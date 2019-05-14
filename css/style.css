@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#col1 {
+    width: 50%;
+    background-color: green;
+}
+
+#col2 {
+    width: 50%;
+    background-color: red;
+}

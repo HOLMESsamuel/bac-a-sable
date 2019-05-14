@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="css/style-galerie.css">
+	<title>Galeries d'images</title>
+</head>
+<header>
+	<a href="bac-a-sable.html"><img id="retour" src="images/fleche.png"></a>
+	<h1>Galerie d'images</h1>
+</header>
+<body>
+	<div class="methode" id="methode1">
+		<h2>Methode 1 :</h2>
+		<span id="photo1" class="target"></span>
+		<span id="photo2" class="target"></span>
+		<span id="photo3" class="target"></span>
+		<span id="photo4" class="target"></span>
+		<span id="photo5" class="target"></span>
+		<div class="diapo" id="diaporama1">
+			<div class="interieur-diaporama">
+				<div class="cadre">
+					<img src="images/mars1.jpg">
+				</div>
+				<div class="cadre">
+					<img src="images/mars2.jpg">
+				</div>
+				<div class="cadre">
+					<img src="images/mars3.jpg">
+				</div>
+				<div class="cadre">
+					<img src="images/mars4.jpg">
+				</div>
+				<div class="cadre">
+					<img src="images/mars5.jpg">
+				</div>
+				</div>
+			</div>
+		<ul class="navigation_diapo">
+			<li>
+			<a href="#photo1">
+			<img src="images/mars1.jpg">
+			</a>
+			</li>
+			<li>
+			<a href="#photo2">
+			<img src="images/mars2.jpg">
+			</a>
+			</li>
+			<li>
+			<a href="#photo3">
+			<img src="images/mars3.jpg">
+			</a>
+			</li>
+			<li>
+			<a href="#photo4">
+			<img src="images/mars4.jpg">
+			</a>
+			<li>
+			<a href="#photo5">
+				<img src="images/mars5.jpg">
+			</a>
+			</li>
+		</ul>	
+	</div>
+	<br/>
+	<hr width="100%">
+	<br/>
+	<div class="methode" id="methode2">
+		<h2>Methode 2 :</h2>
+		<div class="slider">
+			<figure>
+				<div class="slide">
+					<img src="images/athle1.jpg">
+				</div>
+		
+				<div class="slide">
+					<img src="images/athle2.jpg">
+				</div>
+		
+				<div class="slide">
+					<img src="images/athle3.jpg">
+				</div>
+		
+				<div class="slide">
+					<img src="images/athle4.jpg">
+				</div>
+		
+				<div class="slide">
+					<img src="images/athle5.jpg">
+				</div>
+			</figure>
+		</div>
+	</div>
+	<br/>
+	<hr width="100%">
+	<br/>
+	<div class="methode" id="methode3">
+		<h2>Methode 3 :</h2>
+		<div id="container">
+			<input type="radio" name="images" id="i1" checked>
+			<input type="radio" name="images" id="i2">
+			<input type="radio" name="images" id="i3">
+			<div class="image" id="one">
+				<img src="images/athle1350.jpg">
+				<label for="i3" class="precedent">&lt;</label>
+				<label for="i2" class="suivant">&gt;</label>
+			</div>
+			<div class="image" id="two">
+				<img src="images/athle2350.jpg">
+				<label for="i1" class="precedent">&lt;</label>
+				<label for="i3" class="suivant">&gt;</label>
+			</div>
+			<div class="image" id="three">
+				<img src="images/athle3350.jpg">
+				<label for="i2" class="precedent">&lt;</label>
+				<label for="i1" class="suivant">&gt;</label>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,2181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Solar System</title>
+	<meta charset="UTF-8" />
+
+	<style>
+		body {
+			font-family: Arial;
+			font-size: 16px; 
+			background-color: #F1F1F1; 
+			letter-spacing: 0px;
+			margin:0px;
+			padding-top: 8px;
+			padding-left: 8px;
+		}
+		#wrapper{
+			margin: 0 auto;
+		}
+		div {
+			font-family: "Droid Serif", serif;
+    		color: #7f8c97;
+		}
+		::-webkit-scrollbar{
+			width: 12px;
+			background-color: #F1F1F1;
+		}
+		::-webkit-scrollbar-thumb{
+			background-color: #acb7c0;
+		}
+		::-webkit-scrollbar-thumb:hover{
+			background-color: #6693b8;
+		}
+
+		input[type="range"]{
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			background: #acb7c0;
+			height: 8px;
+			display: inline-block;
+			border: 1px solid white; 
+			outline: none;
+		}
+		input[type=range]::-moz-range-track{
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			background: #acb7c0;
+			height: 8px;
+			display: inline-block;
+			border: 1px solid white; 
+			outline: none;
+		}
+		input[type="range"]:focus{
+			outline: none;
+		}
+		#create_object_button{
+			height: 18px;
+		}
+
+		input[type=range]::-webkit-slider-thumb{
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			display: inline-block;
+			border:none;
+			width: 8px;
+			height: 16px;
+			background: #6693b8;
+			position: relative;
+			z-index: 3;
+		}
+		input[type=range]::-moz-range-thumb {
+			border-radius: 0;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			display: inline-block;
+			border:none;
+			width: 8px;
+			height: 16px;
+			background: #6693b8;
+			position: relative;
+			z-index: 3;
+		}
+		input[type="range"]:focus{
+			outline: none;
+		}
+		#create_object_button{
+			height: 18px;
+		}
+
+		input[type=range]::-webkit-slider-thumb{
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			display: inline-block;
+			border:none;
+			width: 8px;
+			height: 16px;
+			background: #6693b8;
+			position: relative;
+			z-index: 3;
+		}
+		input[type=range]::-moz-range-thumb {
+			border-radius: 0;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			display: inline-block;
+			border:none;
+			width: 8px;
+			height: 16px;
+			background: #6693b8;
+			position: relative;
+			z-index: 3;
+		}
+		input[type=checkbox] {
+			visibility: hidden;
+		}
+		input[type=checkbox] + label{
+			margin: 0px;
+			display: inline-block;
+			position: relative;
+			width: 8px;
+			height: 8px;
+			cursor: pointer;
+			z-index: 1;
+			background: #FFF;
+			border:1px solid #FFF;
+			outline: 1px solid black;
+		}
+		 input[type=checkbox]:checked + label {
+			background: #6693b8;
+		}
+		button {
+			cursor: pointer;
+			display: inline-block;
+			background-color: #acb7c0;
+			text-decoration: none;
+			color: #FFF;
+			font-family: "Open Sans", sans-serif;
+			text-decoration: none;
+			border: 0px;
+			margin: 0px;
+			box-shadow: 0px;
+		}
+		button:hover{
+			background-color: #6693b8;
+		}
+		button:focus{
+			outline:none;
+		}
+		#controls_2 button{
+			width: 100%;
+			font-size: 16px;
+			padding: 8px;
+		}
+		input[type="text"] {
+			margin: 0px;
+			width:49px;
+			padding-top: 1px;
+			padding-bottom: 1px;
+			padding-left: 0px;
+			padding-right: 0px;
+			border:#999 1px solid;
+			font-family: Courier, monospace;
+			color:#666;
+			font-size: 14px;
+			line-height: 14px;
+			height: 14px;
+		}
+		input[type="text"]:focus{
+			color:#000;
+			outline:none;
+			border:#35a5e5 1px solid;
+		}
+		.span_head {
+			display: inline-block;
+			float: right;
+			margin-left: 16px;
+		}
+		#controls h4{
+			margin: 0px 0px 8px 0px;
+			padding: 0px;
+			font-size: 16px;
+			font-weight: bold;
+			font-family: "Open Sans", sans-serif;
+    		color: #303e49;
+		}
+		#myCanvas{
+			float: left;
+		}
+		#controls{
+			float: left;
+			padding: 0px;
+		}
+		#controls > div, #canvas_wrapper {
+			display: block;
+			background-color: #FFF;
+		    float: left;
+		    border: 1px solid #d4d4d4;
+		    border-radius: 2px;
+		    margin-right: 8px;
+		    margin-bottom: 8px;
+		    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+		}
+		#controls > div{
+ 			padding: 16px; 
+		}
+		#controls_1{
+			height: 124px;
+		}
+		#controls_2{
+			height: 124px;
+		}
+		#controls_3{
+			overflow-y: auto;
+		}
+		.span_c1, .range_c1 {
+			display: inline-block;
+		}
+		.span_c1{
+			width: 46px;
+		}
+		.range_c1{
+			max-width: 138px;
+		}
+		.span_c2{
+			display: inline-block;
+			width:69px;
+		}
+		#speed{
+			margin-top:8px;
+			max-width: 115px;
+		}
+		
+		#objects_info h4 , #controls_3 h4{
+			display: inline-block;
+			float:left;
+			width:60px;
+			margin: 0px;
+		}
+		#objects_info > div {
+			width: 100%;
+			float: left;
+			margin-bottom: 12px;
+		}
+		.span_planet_opt{
+			display: inline-block;
+			float: right;
+			padding: 0px;
+			margin: 0px;
+			height:18px;
+		}
+		.position, .velocity, .acceleration, .info_column{
+			float: left;
+			font-size: 14px;
+			min-width: 120px;
+		}
+		.position{
+			width: 33%;
+		}
+		.velocity{
+			width: 33%;
+		}
+		.acceleration{
+			width: 34%;
+		}
+		.info_column{
+			width: 33%;
+			height: 63px;
+		}
+		.span_var_name, .span_last_var_name{
+			display: inline-block;
+			height: 18px;
+			width: 18px;
+			color: #000;
+		}
+		.span_last_var_name{
+			margin-top: 8px;
+			margin-bottom: 8px;
+		}
+		.span_unit_name{
+			display: inline-block;
+			height: 18px;
+			color: #000;
+			margin-left: 4px;
+		}
+		.span_unit_name > .exponent{
+			font-size: 11px;
+		}
+		.new_object_div{
+			width: 100%;
+			float: left;
+			margin-bottom: 16px;
+		}
+		.confirm_creation_div {
+			width: 100%;
+			float:left;
+		}
+		.confirm_creation_div > span{
+			display: inline-block;
+			float: right;
+		}
+		.confirm_creation_div button {
+			height: 24px;
+			width: 60px;
+			margin-right: 8px;
+			margin-top: 8px;
+			font-size: 14px;
+			color: #FFF;
+			font-family: "Open Sans", sans-serif;
+		}
+		.more_info{
+			float: left;
+			width:100%;
+		}
+		#more_info_button{
+			clear: both;
+			width: 68px;
+		}
+		.more_info button {
+			height: 18px;
+			width: 72px;
+			margin: 0px;
+			font-size: 12px;
+			color: #FFF;
+			font-family: "Open Sans", sans-serif;
+		}
+		.apply_force_div {
+			margin-top: 8px;
+			float: left;
+			width:100%;
+		}
+		.ap_div1, .ap_div2, .ap_div3 {
+			float: left;
+			font-size: 14px;
+			color: #000;
+		}
+		.ap_div1 {
+			width:33%;
+			min-width: 130px;
+		}
+		.ap_div2{
+			width:20%;
+			min-width: 79px;
+		}
+		.ap_div3{
+			width: 47%;
+			min-width: 186px;
+		}
+		.ap_div2 input[type="text"]{
+			width: 40px;
+		}
+		.span_long_var_name{
+			display: inline-block;
+			width:60px;
+			text-align: right;
+			margin-right: 4px;
+			height: 18px;
+			color: #000;
+		}
+		.confirm_ap_div{
+			float: left;
+			width:100%;
+		}
+		.confirm_ap_div > span{
+			display: inline-block;
+			float: right;
+		}
+		.confirm_ap_div button {
+			height: 24px;
+			width: 60px;
+			margin-right: 8px;
+			margin-top: 8px;
+			font-size: 14px;
+			color: #FFF;
+			font-family: "Open Sans", sans-serif;
+		}
+		input[type=radio] {
+			visibility: hidden;
+		}
+		input[type=radio] + label{
+			margin: 0px;
+			display: inline-block;
+			position: relative;
+			right:10px;
+
+			width: 8px;
+			height: 8px;
+			cursor: pointer;
+			z-index: 1;
+			background: #FFF;
+			border:1px solid #FFF;
+			outline: 1px solid black;
+		}
+		 input[type=radio]:checked + label {
+			background: #6693b8;
+		}
+	</style>
+</head>
+<body id="main_body">
+
+<div id="wrapper">
+	<div id="canvas_wrapper">
+		<canvas id="myCanvas"></canvas>
+	</div>
+
+	<div id="controls">
+		<div id="controls_1">
+			<h4>Camera</h4>
+			<span class="span_c1">Alpha:</span><input class="range_c1" type="range" name="alfa" id="alfa" max="179" min="-179" value="45"><br>
+			<span class="span_c1">Beta:</span><input class="range_c1" type="range" name="beta" id="beta" max="89" min="-89" value="35"><br>
+			<br>
+			<span class="span_c1">Zoom:</span><input class="range_c1" type="range" name="zoom" id="zoom" max="30" min="1" value="1">
+		</div>
+
+		<div id="controls_2">
+			<h4>Computation</h4>
+			<span class="span_c2">Epsilon:</span><input type="text" name="epsilon_input" id="epsilon_input" value=" 0.25" onchange="changeEpsilon();"> day <br>
+			<span class="span_c2">Speed:</span><input type="range" name="speed" id="speed" max="10" min="1" value="1" step="1.5"><br>
+			<br>
+			<button type="button" id="pause_button" onclick="pauseCalculation();">Start</button>
+		</div>
+
+		<div id="controls_3">
+			<h4>Other</h4>
+			<span class="span_head"><button type="button" id="create_object_button" onclick="createNewObjectDiv();">Add an object</button></span>
+			<span class="span_head"><input type="checkbox" id="info_checkbox" onclick="showInfo();" checked><label for="info_checkbox"></label> show info</span>
+			<br><br>
+			<div id="new_objects">
+			</div>
+
+			<div id="objects_info">
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<script>
+// data - planets' positions and velocities got from: http://ssd.jpl.nasa.gov/horizons.cgi
+// Ephemeris Type: VECTORS 
+// Coordinate Origin: Solar System Barycenter (SSB) [500@0]
+// Time Span: Start=2016-07-11 00:00, Stop=2016-07-11 00:01, Step=1 m
+// Table Settings: defaults
+// Display/Output: default (formated HTML)
+
+// Coordinate system description:
+// 
+//   Ecliptic and Mean Equinox of Reference Epoch
+// 
+//     Reference epoch: J2000.0
+//     xy-plane: plane of the Earth's orbit at the reference epoch
+//     x-axis  : out along ascending node of instantaneous plane of the Earth's
+//               orbit and the Earth's mean equator at the reference epoch
+//     z-axis  : perpendicular to the xy-plane in the directional (+ or -) sense
+//               of Earth's north pole at the reference epoch.
+
+// $$SOE
+// 2457580.500000000 = A.D. 2016-Jul-11 00:00:00.0000 (TDB)
+
+// units: Au for distance, days for time, solar mass for mass
+
+// set two HTML canvas' widths and heights according to the size of your window
+var temp_value;
+var temp_value2;
+var elements;
+var ti;
+document.getElementById('myCanvas').width = window.innerHeight*0.95;
+document.getElementById('myCanvas').height = window.innerHeight*0.95;
+
+//temp_value = Math.ceil(window.innerWidth-window.innerHeight-8);
+temp_value = document.getElementById("main_body").getBoundingClientRect().width - document.getElementById('canvas_wrapper').getBoundingClientRect().width - 8 - 8; // 8 for margin after and before the canvas
+// set the max width of controls and center the app if necessary
+if(temp_value >= 690) { 
+	// centering
+	temp_value = document.getElementById('canvas_wrapper').getBoundingClientRect().width + 8 + 690;
+	document.getElementById('wrapper').setAttribute("style","width:" +temp_value+ "px");
+	temp_value = 690;
+
+	// controls
+	document.getElementById('controls').setAttribute("style","width:" + temp_value + "px");
+
+	// controls 3
+	temp_value2 = temp_value - 32 - 8 - 2; 
+	temp_value = document.getElementById('canvas_wrapper').getBoundingClientRect().height - document.getElementById('controls_1').getBoundingClientRect().height - 32 - 8 - 2; 
+	document.getElementById('controls_3').setAttribute("style","height:" + temp_value + "px; width:"+ temp_value2 +"px");
+
+	// controls 1 and 2
+	temp_value = (temp_value2 + 32 + 8 + 2)/2 - 8 - 32 - 2;
+	document.getElementById('controls_1').setAttribute("style","width:"+ temp_value +"px");
+	document.getElementById('controls_2').setAttribute("style","width:"+ temp_value +"px");
+
+	// sliders in controls 1 and 2
+	temp_value = temp_value - 46 - 8;
+	elements = document.getElementsByClassName("range_c1");
+	for(ti = 0; ti < elements.length; ti++){
+		//elements[ti].style.width = "" + temp_value + "px;";
+		elements[ti].setAttribute("style", "width:" +temp_value+ "px;");
+	}
+	temp_value = temp_value + 46 + 8 - 69 - 8;
+	document.getElementById('speed').setAttribute("style", "width:"+temp_value+"px;");
+} else if (temp_value < 690 && temp_value >= 264) {
+	// if the desired width for controls is too small next to the canvas, set it below
+	// controls
+	document.getElementById('controls').setAttribute("style","width:" + temp_value + "px");
+
+	// controls 3
+	temp_value2 = temp_value - 32 - 8 - 2; 
+	temp_value = document.getElementById('canvas_wrapper').getBoundingClientRect().height - document.getElementById('controls_1').getBoundingClientRect().height - 32 - 8 - 2; 
+	document.getElementById('controls_3').setAttribute("style","height:" + temp_value + "px; width:"+ temp_value2 +"px");
+
+	// controls 1 and 2
+	temp_value = (temp_value2 + 32 + 8)/2 - 8 - 32 - 1;
+	document.getElementById('controls_1').setAttribute("style","width:"+ temp_value +"px");
+	document.getElementById('controls_2').setAttribute("style","width:"+ temp_value +"px");
+
+	// sliders in controls 1 and 2
+	temp_value = temp_value - 46 - 8;
+	elements = document.getElementsByClassName("range_c1");
+	for(ti = 0; ti < elements.length; ti++){
+		//elements[ti].style.width = "" + temp_value + "px;";
+		elements[ti].setAttribute("style", "width:" +temp_value+ "px;");
+	}
+	temp_value = temp_value + 46 + 8 - 69 - 8;
+	document.getElementById('speed').setAttribute("style", "width:"+temp_value+"px;");
+} else if( temp_value < 264 && temp_value >= 132) {
+	// if the desired width for controls is too small next to the canvas, set it below
+	// controls
+	document.getElementById('controls').setAttribute("style","width:" + temp_value + "px");
+
+	// controls 3
+	temp_value2 = temp_value - 32 - 8 - 2; 
+	temp_value = document.getElementById('canvas_wrapper').getBoundingClientRect().height - document.getElementById('controls_1').getBoundingClientRect().height - 32 - 8 - 2 - 124 - 32 - 8; 
+	document.getElementById('controls_3').setAttribute("style","height:" + temp_value + "px; width:"+ temp_value2 +"px");
+
+	// controls 1 and 2
+	temp_value = (temp_value2 + 32 + 8) - 8 - 32 - 1;
+	document.getElementById('controls_1').setAttribute("style","width:"+ temp_value +"px");
+	document.getElementById('controls_2').setAttribute("style","width:"+ temp_value +"px");
+
+	// sliders in controls 1 and 2
+	temp_value = temp_value - 46 - 8;
+	elements = document.getElementsByClassName("range_c1");
+	for(ti = 0; ti < elements.length; ti++){
+		//elements[ti].style.width = "" + temp_value + "px;";
+		elements[ti].setAttribute("style", "width:" +temp_value+ "px;");
+	}
+	temp_value = temp_value + 46 + 8 - 69 - 8;
+	document.getElementById('speed').setAttribute("style", "width:"+temp_value+"px;");
+} else if(temp_value <= 264) {
+	// if the desired width for controls is too small next to the canvas, set it below
+	temp_value = document.getElementById('canvas_wrapper').getBoundingClientRect().width + 8;
+
+	// centering
+	document.getElementById('wrapper').setAttribute("style","width:" +temp_value+ "px");
+
+	// controls
+	document.getElementById('controls').setAttribute("style","width:" + temp_value + "px");
+
+	// controls 3
+	temp_value2 = temp_value - 32 - 8 - 2; 
+	temp_value = document.getElementById('canvas_wrapper').getBoundingClientRect().height - document.getElementById('controls_1').getBoundingClientRect().height - 32 - 8 - 2; 
+	document.getElementById('controls_3').setAttribute("style","height:" + temp_value + "px; width:"+ temp_value2 +"px");
+
+	// controls 1 and 2
+	temp_value = (temp_value2 + 32 + 8 + 2)/2 - 8 - 32 - 2;
+	document.getElementById('controls_1').setAttribute("style","width:"+ temp_value +"px");
+	document.getElementById('controls_2').setAttribute("style","width:"+ temp_value +"px");
+
+	// sliders in controls 1 and 2
+	temp_value = temp_value - 46 - 8;
+	elements = document.getElementsByClassName("range_c1");
+	for(ti = 0; ti < elements.length; ti++){
+		//elements[ti].style.width = "" + temp_value + "px;";
+		elements[ti].setAttribute("style", "width:" +temp_value+ "px;");
+	}
+	temp_value = temp_value + 46 + 8 - 69 - 8;
+	document.getElementById('speed').setAttribute("style", "width:"+temp_value+"px;");
+
+}
+
+// variables used in for loops
+// var i counts number of frames that has elapsed
+var i = 0;
+var m;
+var n;
+var o;
+var p;
+var t;
+
+var obj_order = [];
+var temp_arr = [];
+var order1 = [];
+var order2 = [];
+
+
+// speed sets the speed of the animation - not implemented yet
+var speed = 1;
+var pause = 1;
+var zoom = 1;
+// object mousePos stores last mouse positions on each canvas after clicking on them
+var mousePos = {
+	x1: 0,
+	y1:0,
+	x2:0,
+	y2:0
+}
+
+// G is gravitional constant in units AU^3 /(solar_mass * days^2)
+// epsilon is length of a time interval between each two frames in days
+// num_of_objects - # of objects from Sun to Pluto
+var G = 0.0002959198;
+var epsilon = parseFloat(document.getElementById("epsilon_input").value);
+//var epsilon = document.getElementById("epsilon_input").value;
+var num_of_objects = 10;
+
+// animation starts on this date
+var start_date = new Date(2016, 6 ,11, 0, 0, 0, 0);
+// initial positions and velocities for each object - position in AU, velocity in AU/day
+var Sun = new object(3.713905280444709E-03,2.742830615241477E-03,-1.625111349795470E-04,-1.051915394888917E-06,7.015027786322976E-06,1.370536250868914E-08,1.0);
+var Mercury = new object(-1.965950547334612E-01,2.593551729735992E-01,3.918234517508064E-02,-2.786366285535801E-02,-1.619755119951190E-02,1.232091258455634E-03,1.660053808E-7);
+var Venus = new object(-4.726385984771702E-01,5.394467048102669E-01,3.468482962160215E-02,-1.519933713062790E-02,-1.352754542224337E-02,6.914739916727856E-04,2.447763446E-6);
+var Earth = new object(3.331074501004356E-01,-9.590473020328814E-01,-1.294753571150237E-04,1.599432430885350E-02,5.523465906873589E-03,-8.315910541739975E-07,3.003379447E-6);
+var Mars = new object(-3.181264122904270E-02,-1.454856058499695E+00,-2.983551347730508E-02,1.451612104006493E-02,8.698887258772087E-04,-3.381875595275849E-04,3.227024717E-7);
+
+var Jupiter = new object(-5.434632513317845E+00,2.359895152065818E-01,1.205587152741575E-01,-4.148362697501519E-04,-7.182696765113621E-03,3.913415366203666E-05,9.547660356E-4);
+var Saturn = new object(-2.756135699960328E+00,-9.639002868915114E+00,2.772869513564958E-01,5.057675453027613E-03,-1.551512354179455E-03,-1.740260986136770E-04,2.858162983E-4);
+var Uranus = new object(1.860590437833392E+01,7.228335019370605E+00,-2.141974211660768E-01,-1.453187262758535E-03,3.482829350342277E-03,3.164295623938534E-05,4.365492444E-5);
+var Neptune = new object(2.816167378993194E+01,-1.020791665722368E+01,-4.388020412088799E-01,1.048522375683022E-03,2.969490438256578E-03,-8.542800681625048E-05,5.150989414E-5);
+var Pluto = new object(9.128305872187720E+00,-3.184017394781415E+01,7.666614405937918E-01,3.092459502751451E-03,2.236445839272436E-04,-9.206114047186626E-04,6.552513138E-9);
+
+// sets relative radii of planets on the canvas
+Earth.radius = Math.ceil(document.getElementById('myCanvas').width * 15 / 600);
+  Sun.radius = Earth.radius;
+  Mercury.radius = Math.ceil(0.38 * Earth.radius);
+  Venus.radius = Math.ceil(0.95 * Earth.radius);
+  Mars.radius = Math.ceil(0.53 * Earth.radius);
+
+  Jupiter.radius = Math.ceil(12 *document.getElementById('myCanvas').width * 20 / 600);
+  Saturn.radius = Math.ceil(0.83 * Jupiter.radius);
+  Uranus.radius = Math.ceil(0.36 * Jupiter.radius);
+  Neptune.radius = Math.ceil(0.35 * Jupiter.radius);
+  Pluto.radius = Math.ceil(0.20 * Jupiter.radius);
+// stores real radii in km
+Sun.real_radius = 695700;
+Mercury.real_radius = 2439.7;
+Venus.real_radius = 6051.8;
+Earth.real_radius = 6371;
+Mars.real_radius = 3389.5;
+Jupiter.real_radius = 69911;
+Uranus.real_radius = 25362;
+Neptune.real_radius = 24622;
+Pluto.real_radius = 1187;
+// sets their color on canvas
+  Sun.color = 'rgba(255,175,0,1)';
+  Mercury.color = 'rgba(206,133,82,1)';
+  Venus.color = 'rgba(254,159,77,1)';
+  Earth.color = 'rgba(46,58,84,1)';
+  Mars.color = 'rgba(227,154,77,1)';
+
+  Jupiter.color = 'rgba(255,227,159,1)';
+  Saturn.color = 'rgba(226,162,54,1)';
+  Uranus.color ='rgba(53,146,177,1)';
+  Neptune.color = 'rgba(56,132,228,1)';
+  Pluto.color ='rgba(244,206,156,1)';
+// store their names
+  Sun.name = 'Sun'; Mercury.name = 'Mercury'; Venus.name = 'Venus'; Earth.name = 'Earth'; Mars.name = 'Mars';
+  Jupiter.name = 'Jupiter'; Saturn.name = 'Saturn'; Uranus.name = 'Uranus'; Neptune.name = 'Neptune'; Pluto.name = 'Pluto';
+
+  Sun.czech_name = "Sun";
+  Mercury.czech_name = "Mercury";
+  Venus.czech_name = "Venus";
+  Earth.czech_name = "Earth";
+  Mars.czech_name = "Mars";
+
+  Jupiter.czech_name = "Jupiter";
+  Saturn.czech_name = "Saturn";
+  Uranus.czech_name = "Uranus";
+  Neptune.czech_name = "Neptune";
+  Pluto.czech_name = "Pluto";
+// array of all the objects
+var objects = [Sun, Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto];
+
+// asis for canvas 1
+var axis_x = new axis(-1,0,0,1,0,0);
+var axis_y = new axis(0,-1,0,0,1,0);
+var axis_z = new axis(0,0,-1,0,0,1);
+var axis1 = [axis_x, axis_y, axis_z];
+// axis for canvas 2
+var axis_x2 = new axis(-20,0,0,20,0,0);
+var axis_y2 = new axis(0,-20,0,0,20,0);
+var axis_z2 = new axis(0,0,-20,0,0,20);
+var axis2 = [axis_x2, axis_y2, axis_z2];
+
+// initial camera position and direction of 'upwards'
+var camera = {
+	x:1,
+	y:1,
+	z:1,
+	forward: [-1,-1,-1],
+	sideways: [0,1,0],
+	up: [0,0,1]
+}
+// next camera position is given by two angles - alfa, beta 
+var alfa = document.getElementById("alfa").value * (2*Math.PI/360);
+var beta = document.getElementById("beta").value * (2*Math.PI/360);
+// stores distances between object i and object j
+var distances = [[],[],[],[],[],[],[],[],[],[]];
+
+// count initial distances
+for(m = 0; m < num_of_objects; m++) {
+	for(n = 0; n < num_of_objects; n++) {
+		distances[m][n] = Math.sqrt(Math.pow((objects[m].position[0] - objects[n].position[0]),2) + Math.pow((objects[m].position[1] - objects[n].position[1]),2) + Math.pow((objects[m].position[2] - objects[n].position[2]),2) );
+		//sqrt((objects[1,1,i] - objects[1,1,j])^2 + (objects[1,2,i] - objects[1,2,j])^2 + (objects[1,3,i] - objects[1,3,j])^2)
+	}
+}
+// count initial accelerations and velocities
+for(m = 0; m < num_of_objects; m++) {
+	objects[m].acceleration[0] = 0;
+	objects[m].acceleration[1] = 0;
+	objects[m].acceleration[2] = 0;
+	for(n = 0; n < num_of_objects; n++) {
+		if(n != m) {
+			objects[m].acceleration[0] = objects[m].acceleration[0] - G * objects[n].mass * (objects[m].position[0] - objects[n].position[0]) / Math.pow(distances[m][n],3);
+			objects[m].acceleration[1] = objects[m].acceleration[1] - G * objects[n].mass * (objects[m].position[1] - objects[n].position[1]) / Math.pow(distances[m][n],3);
+			objects[m].acceleration[2] = objects[m].acceleration[2] - G * objects[n].mass * (objects[m].position[2] - objects[n].position[2]) / Math.pow(distances[m][n],3);
+		}
+	}
+	objects[m].ac_length = Math.sqrt( Math.pow(objects[m].acceleration[0],2) + Math.pow(objects[m].acceleration[1],2) + Math.pow(objects[m].acceleration[2],2) );
+
+	objects[m].velocity[0] = objects[m].velocity[0] + epsilon/2 * objects[m].acceleration[0];
+	objects[m].velocity[1] = objects[m].velocity[1] + epsilon/2 * objects[m].acceleration[1];
+	objects[m].velocity[2] = objects[m].velocity[2] + epsilon/2 * objects[m].acceleration[2];
+	objects[m].speed = Math.sqrt( Math.pow(objects[m].velocity[0],2) + Math.pow(objects[m].velocity[1],2) + Math.pow(objects[m].velocity[2],2) );
+	objects[m].escape_speed = Math.sqrt( 2 * G * objects[0].mass / distances[m][0] );
+
+	objects[m].kinetic_energy = 0.5 * objects[m].mass * Math.pow(objects[m].speed,2);
+	objects[m].potential_energy = - G * objects[m].mass * objects[0].mass / distances[m][0];
+	objects[m].total_energy = objects[m].kinetic_energy + objects[m].potential_energy;
+
+}
+
+// add event for clicking on the first canvas
+var t_vec = [];
+var div;
+document.getElementById("myCanvas").addEventListener("click", function(event) {
+	var rect = document.getElementById("myCanvas").getBoundingClientRect();
+	mousePos.x1 = event.clientX - rect.left;
+	mousePos.y1 = event.clientY - rect.top;
+	for(m = 0; m < num_of_objects; m++) {
+		t_vec = transform_vec(objects[m].position);
+		if(mousePos.x1 > (t_vec[0] - objects[m].radius/zoom) && mousePos.x1 < (t_vec[0] + objects[m].radius/zoom) && mousePos.y1 > (t_vec[1] - objects[m].radius/zoom) && mousePos.y1 < (t_vec[1] + objects[m].radius/zoom)) {
+			if(objects[m].active == 0) {
+				objects[m].active = 1;
+				objects[m].show_track = 1;
+				if(document.getElementById("info_checkbox").checked) {
+					createPlanetDiv(m);
+					}
+								//'<div class="position">x: ' + objects[m].position[0].toFixed(3) + '<br>y: '+ objects[m].position[1].toFixed(3) +  '<br>z: '+ objects[m].position[2].toFixed(3) +  '</div>';
+			} else  {
+				objects[m].active = 0;
+				objects[m].show_track = 0;
+				objects[m].show_more_info = 0;
+				if(document.getElementById(objects[m].name)) {
+					document.getElementById(objects[m].name).remove();
+				}
+			}
+		}
+	}
+});
+
+// request the first animation frame - each other one is requested in the function draw
+window.requestAnimationFrame(draw);
+
+// objects - object, axis
+function object(x,y,z,vx,vy,vz,mass) {
+  	this.position = [x,y,z];
+  	this.velocity = [vx,vy,vz];
+  	this.acceleration = [];
+  	this.position2 = [];
+  	this.velocity2 = [];
+  	this.acceleration2 = [];
+
+  	this.mass = mass;
+  	this.active = 0;
+  	this.show_track = 0;
+  	this.trace = [[]];
+  	this.camera_dist = 1;
+
+  	this.speed = 0;
+  	this.escape_speed = 0;
+  	this.ac_length = 0;
+  	this.kinetic_energy = 0;
+  	this.potential_energy = 0;
+  	this.total_energy = 0;
+  	this.major_axis = 0;
+  	this.minor_axis = 0;
+  	this.eccentricity = 0;
+  	this.omega = 0;
+  	this.period = 0;
+
+  	this.show_prediction = 0;
+  	this.prediction = [[]];
+
+  	this.show_more_info = 0;
+
+  	this.apply_force = 0;
+  	this.ap_radio = 0;
+  	this.alpha = 0;
+  	this.beta = 0;
+  	this.force = 0;
+  	this.fuel_mass = 0;
+  	this.fuel_con = 0;
+}
+function axis(a,b,c,d,e,f) {
+	this.start = [a,b,c];
+	this.end = [d,e,f];
+}
+
+var ap_u1 = [];
+var ap_u2 = [];
+var ap_u3 = [];
+var ap_temp_vec = [];
+var ap_temp_vec2 = [];
+var ap_temp_num = 0;
+var ap_Fx = 0;
+var ap_Fy = 0;
+var ap_Fz = 0;
+var ap_ax = 0;
+var ap_ay = 0;
+var ap_az = 0;
+// main function which is called for each animation frame
+function draw() {
+	// get tools for drawing on canvas 1
+	ctx = document.getElementById('myCanvas').getContext('2d');
+	ctx.clearRect(0,0,document.getElementById('myCanvas').width ,document.getElementById('myCanvas').height); // clear canvas 1
+
+	//epsilon = document.getElementById("epsilon_input").value;
+	speed = parseFloat(document.getElementById("speed").value);
+	zoom = parseFloat(document.getElementById("zoom").value);
+
+	for(m = 0; m < 3; m++) {
+		axis1[m].start[m] = -zoom;
+		axis1[m].end[m] = zoom;
+	}
+
+	if(!pause) {	
+		// COMPLICATED CALCULATION
+		for(t = 0; t < speed; t++) {
+		  for(m = 0; m < num_of_objects; m++) {
+		  	// x(t) = x(t - epsilon) + epsilon * v_x(t - epsilon/2)
+		  	objects[m].position2[0] = objects[m].position[0] + epsilon * objects[m].velocity[0];
+		  	objects[m].position2[1] = objects[m].position[1] + epsilon * objects[m].velocity[1];
+		  	objects[m].position2[2] = objects[m].position[2] + epsilon * objects[m].velocity[2];
+		  }
+		  for(m = 0; m < num_of_objects; m++) {
+		  	for(n = 0; n < num_of_objects; n++) {
+		  		// r[i,j] = sqrt( (x_i - x_j)^2 + (y_i - y_j)^2 + (z_i - z_j)^2 )
+		  		distances[m][n] = Math.sqrt(Math.pow((objects[m].position2[0] - objects[n].position2[0]),2) + Math.pow((objects[m].position2[1] - objects[n].position2[1]),2) + Math.pow((objects[m].position2[2] - objects[n].position2[2]),2) );
+		  	}
+		  }
+		  // restore .position
+		  for(m = 0; m < num_of_objects; m++) {
+		  	objects[m].position[0] = objects[m].position2[0];
+			objects[m].position[1] = objects[m].position2[1];
+			objects[m].position[2] = objects[m].position2[2];
+		  }
+
+		  for(m = 0; m < num_of_objects; m++) {
+		  	objects[m].acceleration2[0] = 0;
+		  	objects[m].acceleration2[1] = 0;
+		  	objects[m].acceleration2[2] = 0;
+		  	for(n = 0; n < num_of_objects; n++) {
+		  		if(n != m) {
+		  			// a_x(t) = SUM( - G * m_j * (x_i - x_j) / r[i,j]^3 )
+		  			objects[m].acceleration2[0] = objects[m].acceleration2[0] - G * objects[n].mass * (objects[m].position2[0] - objects[n].position2[0]) / Math.pow(distances[m][n],3);
+					objects[m].acceleration2[1] = objects[m].acceleration2[1] - G * objects[n].mass * (objects[m].position2[1] - objects[n].position2[1]) / Math.pow(distances[m][n],3);;
+					objects[m].acceleration2[2] = objects[m].acceleration2[2] - G * objects[n].mass * (objects[m].position2[2] - objects[n].position2[2]) / Math.pow(distances[m][n],3);;
+		  		}
+		  	}
+		  	// START apply force 
+		  	if(objects[m].apply_force == 1 && objects[m].fuel_mass > 0) {
+		  		if(objects[m].fuel_mass > Math.abs(objects[m].fuel_con * epsilon)) {
+			  		objects[m].fuel_mass = objects[m].fuel_mass - objects[m].fuel_con * epsilon;
+			  		objects[m].mass = objects[m].mass - objects[m].fuel_con * epsilon;
+			  		// if first radio button is selected
+			  		if(objects[m].ap_radio == 1) {
+			  			// count basis
+			  			ap_temp_num = Math.sqrt(Math.pow(objects[m].velocity[0],2) + Math.pow(objects[m].velocity[1],2) + Math.pow(objects[m].velocity[2],2) );
+			  			ap_u1[0] = 1 / ap_temp_num * objects[m].velocity[0];
+			  			ap_u1[1] = 1 / ap_temp_num * objects[m].velocity[1];
+			  			ap_u1[2] = 1 / ap_temp_num * objects[m].velocity[2];
+
+						ap_temp_vec[0] = objects[m].acceleration[0]; // v2
+						ap_temp_vec[1] = objects[m].acceleration[1];
+						ap_temp_vec[2] = objects[m].acceleration[2];
+
+						ap_temp_num = dot_product(ap_temp_vec, ap_u1);
+
+						ap_temp_vec2[0] = ap_temp_vec[0] - ap_temp_num * ap_u1[0]; // temp y
+						ap_temp_vec2[1] = ap_temp_vec[1] - ap_temp_num * ap_u1[1]; 
+						ap_temp_vec2[2] = ap_temp_vec[2] - ap_temp_num * ap_u1[2]; 
+
+						ap_temp_num = Math.sqrt(Math.pow(ap_temp_vec2[0],2) + Math.pow(ap_temp_vec2[1],2) + Math.pow(ap_temp_vec2[2],2) );
+
+						ap_u2[0] = 1/ap_temp_num * ap_temp_vec2[0];
+						ap_u2[1] = 1/ap_temp_num * ap_temp_vec2[1];
+						ap_u2[2] = 1/ap_temp_num * ap_temp_vec2[2];
+
+						ap_u3 = cross_product(ap_u1, ap_u2);
+
+						// count force components
+						ap_Fx = objects[m].force * Math.cos(objects[m].alpha) * Math.cos(objects[m].beta);
+						ap_Fy = objects[m].force * Math.sin(objects[m].alpha) * Math.cos(objects[m].beta);
+						ap_Fz = objects[m].force * Math.sin(objects[m].beta);
+
+						// count the additional acceleration
+						ap_ax = 1 / objects[m].mass * ( ap_Fx * ap_u1[0] + ap_Fy * ap_u2[0] + ap_Fz * ap_u3[0] ); 
+						ap_ay = 1 / objects[m].mass * ( ap_Fx * ap_u1[1] + ap_Fy * ap_u2[1] + ap_Fz * ap_u3[1] );
+						ap_az = 1 / objects[m].mass * ( ap_Fx * ap_u1[2] + ap_Fy * ap_u2[2] + ap_Fz * ap_u3[2] );
+
+						// adds the acceleration
+						objects[m].acceleration2[0] = objects[m].acceleration2[0] + ap_ax;
+						objects[m].acceleration2[1] = objects[m].acceleration2[1] + ap_ay;
+						objects[m].acceleration2[2] = objects[m].acceleration2[2] + ap_az;
+
+						// updates prediction if desired
+						if(objects[m].show_prediction == 1) {
+							if(i%5 == 0) {
+								update_prediction(m);
+							}
+						}
+			  		} else if(objects[m].ap_radio == 2) {
+			  			// count basis
+			  			ap_temp_vec[0] = objects[m].position[0] - objects[0].position[0];
+						ap_temp_vec[1] = objects[m].position[1] - objects[0].position[1];
+						ap_temp_vec[2] = objects[m].position[2] - objects[0].position[2];
+
+			  			ap_temp_num = Math.sqrt(Math.pow(ap_temp_vec[0],2) + Math.pow(ap_temp_vec[1],2) + Math.pow(ap_temp_vec[2],2) );
+
+			  			ap_u1[0] = 1 / ap_temp_num * ap_temp_vec[0];
+			  			ap_u1[1] = 1 / ap_temp_num * ap_temp_vec[1];
+			  			ap_u1[2] = 1 / ap_temp_num * ap_temp_vec[2];
+
+						ap_temp_vec[0] = objects[m].velocity[0]; // v2
+						ap_temp_vec[1] = objects[m].velocity[1];
+						ap_temp_vec[2] = objects[m].velocity[2];
+
+						ap_temp_num = dot_product(ap_temp_vec, ap_u1);
+
+						ap_temp_vec2[0] = ap_temp_vec[0] - ap_temp_num * ap_u1[0]; // temp y
+						ap_temp_vec2[1] = ap_temp_vec[1] - ap_temp_num * ap_u1[1]; 
+						ap_temp_vec2[2] = ap_temp_vec[2] - ap_temp_num * ap_u1[2]; 
+
+						ap_temp_num = Math.sqrt(Math.pow(ap_temp_vec2[0],2) + Math.pow(ap_temp_vec2[1],2) + Math.pow(ap_temp_vec2[2],2) );
+
+						ap_u2[0] = 1/ap_temp_num * ap_temp_vec2[0];
+						ap_u2[1] = 1/ap_temp_num * ap_temp_vec2[1];
+						ap_u2[2] = 1/ap_temp_num * ap_temp_vec2[2];
+
+						ap_u3 = cross_product(ap_u1, ap_u2);
+
+						// count force components
+						ap_Fx = objects[m].force * Math.cos(objects[m].alpha) * Math.cos(objects[m].beta);
+						ap_Fy = objects[m].force * Math.sin(objects[m].alpha) * Math.cos(objects[m].beta);
+						ap_Fz = objects[m].force * Math.sin(objects[m].beta);
+
+						// count the additional acceleration
+						ap_ax = 1 / objects[m].mass * ( ap_Fx * ap_u1[0] + ap_Fy * ap_u2[0] + ap_Fz * ap_u3[0] ); 
+						ap_ay = 1 / objects[m].mass * ( ap_Fx * ap_u1[1] + ap_Fy * ap_u2[1] + ap_Fz * ap_u3[1] );
+						ap_az = 1 / objects[m].mass * ( ap_Fx * ap_u1[2] + ap_Fy * ap_u2[2] + ap_Fz * ap_u3[2] );
+
+						// adds the acceleration
+						objects[m].acceleration2[0] = objects[m].acceleration2[0] + ap_ax;
+						objects[m].acceleration2[1] = objects[m].acceleration2[1] + ap_ay;
+						objects[m].acceleration2[2] = objects[m].acceleration2[2] + ap_az;
+
+						// updates prediction if desired
+						if(objects[m].show_prediction == 1) {
+							if(i%5 == 0) {
+								update_prediction(m);
+							}
+						}
+			  		} else if(objects[m].ap_radio == 3) {
+						// count the additional acceleration
+						ap_ax = 1 / objects[m].mass * objects[m].force * Math.cos(objects[m].alpha) * Math.cos(objects[m].beta);
+						ap_ay = 1 / objects[m].mass * objects[m].force * Math.sin(objects[m].alpha) * Math.cos(objects[m].beta);
+						ap_az = 1 / objects[m].mass * objects[m].force * Math.sin(objects[m].beta);
+
+						// adds the acceleration
+						objects[m].acceleration2[0] = objects[m].acceleration2[0] + ap_ax;
+						objects[m].acceleration2[1] = objects[m].acceleration2[1] + ap_ay;
+						objects[m].acceleration2[2] = objects[m].acceleration2[2] + ap_az;
+
+						// updates prediction if desired
+						if(objects[m].show_prediction == 1) {
+							if(i%5 == 0) {
+								update_prediction(m);
+							}
+						}
+			  		}
+			  	} else {
+			  		objects[m].apply_force = 0;
+				    objects[m].alpha = 0;
+				    objects[m].beta = 0;
+				    objects[m].force = 0;
+				    objects[m].fuel_mass = 0;
+				    objects[m].fuel_con = 0;
+				    updatePlanetDiv(m);
+				    //document.getElementById("apply_force_div"+m).innerHTML = "";
+				    //document.getElementById("tick_apply_force"+m).checked = 0;
+				    //updatePlanetDiv(m);
+			  	}
+		  	}
+		  	// END apply force
+
+		  	// v_x(t + epsilon/2) = v_x(t - epsilon/2) + epsilon * a_x(t)
+		  	objects[m].velocity2[0] = objects[m].velocity[0] + epsilon * objects[m].acceleration2[0];
+		  	objects[m].velocity2[1] = objects[m].velocity[1] + epsilon * objects[m].acceleration2[1];
+		  	objects[m].velocity2[2] = objects[m].velocity[2] + epsilon * objects[m].acceleration2[2];
+
+		  	// restore .velocity and .acceleration
+		  	objects[m].velocity[0] = objects[m].velocity2[0];
+		  	objects[m].velocity[1] = objects[m].velocity2[1];
+		  	objects[m].velocity[2] = objects[m].velocity2[2];
+
+		  	//count the speed
+		  	objects[m].speed = Math.sqrt( Math.pow(objects[m].velocity[0],2) + Math.pow(objects[m].velocity[1],2) + Math.pow(objects[m].velocity[2],2) );
+		  	objects[m].escape_speed = Math.sqrt( 2 * G * objects[0].mass / distances[m][0] );
+
+		  	// energies
+		  	objects[m].kinetic_energy = 0.5 * objects[m].mass * Math.pow(objects[m].speed,2);
+			objects[m].potential_energy = - G * objects[m].mass * objects[0].mass / distances[m][0];
+			objects[m].total_energy = objects[m].kinetic_energy + objects[m].potential_energy;
+
+		  	objects[m].acceleration[0] = objects[m].acceleration2[0];
+		  	objects[m].acceleration[1] = objects[m].acceleration2[1];
+		  	objects[m].acceleration[2] = objects[m].acceleration2[2];
+
+		  	// length of acceleration
+		  	objects[m].ac_length = Math.sqrt( Math.pow(objects[m].acceleration[0],2) + Math.pow(objects[m].acceleration[1],2) + Math.pow(objects[m].acceleration[2],2) );
+		  }
+		  // saves trace if desired
+		  for(m = 0; m < 5; m++) {
+		  	if(objects[m].active == 1 && objects[m].show_track == 1) {
+			  	if(i % 20 == 0 && objects[m].trace.length < 150) {
+					objects[m].trace.push([objects[m].position[0],objects[m].position[1],objects[m].position[2]]);
+				}
+			}
+		  }
+		  for(m = 5; m < 10; m++) {
+		  	if(objects[m].active == 1 && objects[m].show_track == 1) {
+			  	if(i % 1000 == 0 && objects[m].trace.length < 300) {
+					objects[m].trace.push([objects[m].position[0],objects[m].position[1],objects[m].position[2]]);
+				}
+			}
+		  }
+		  for(m = 10; m < num_of_objects; m++) {
+		  	if(objects[m].active == 1 && objects[m].show_track == 1) {
+			  	if(i % 20 == 0 && objects[m].trace.length < 150) {
+					objects[m].trace.push([objects[m].position[0],objects[m].position[1],objects[m].position[2]]);
+				}
+			}
+		  }
+		  // i counts frames, increase date
+		  i++;
+		  
+		 // date.setTime( date.getTime() + days * 86400000 );
+		 start_date.setTime(start_date.getTime() + parseFloat(epsilon) * 86400000);
+		// console.log()
+		}
+	}
+	// END OF COMPLICATED CALCULATION
+				
+				// decide which planets are closer to the camera
+				for(m = 0; m < num_of_objects; m++) {
+					objects[m].camera_dist = Math.sqrt(Math.pow((objects[m].position[0] - camera.x),2) + Math.pow((objects[m].position[1] - camera.y),2) + Math.pow((objects[m].position[2] - camera.z),2) );
+					obj_order[m] = objects[m].camera_dist; // m-th entry in obj_order stores distance of m-th obj.
+					temp_arr[m] = m;
+				}
+				//console.log(temp_arr);
+
+				var item;
+				var temp_item;
+				var j;
+				for(n = 1; n < obj_order.length; n++) {
+					item = obj_order[n];
+					temp_item = temp_arr[n];
+					j = n - 1;
+					while((j > -1) && (obj_order[j] > item)) {
+						obj_order[j + 1] = obj_order[j];
+						temp_arr[j + 1] = temp_arr[j];
+						j--;
+					}
+					obj_order[j+1] = item;
+					temp_arr[j+1] = temp_item;
+				}
+				temp_arr.reverse();
+
+
+	// show date
+	ctx.fillStyle = 'rgba(0,0,0,1)'; // color
+  	ctx.font = "12px Arial"; // font
+  	ctx.fillText(start_date.toDateString().slice(4), 10, 10 + 12); // actual date
+
+
+	//axis 1
+	var t1 = [];
+	var t2 = [];
+	for(m = 0; m < 3; m++) {
+		t1 = transform_vec(axis1[m].start);
+		t2 = transform_vec(axis1[m].end);
+
+		// start of axis
+		ctx.beginPath();
+			ctx.moveTo(t1[0],t1[1]);
+			ctx.lineTo(t2[0],t2[1]);
+			ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+		ctx.stroke();
+
+		// end of axis
+		ctx.fillStyle = 'rgba(0,0,0,1)';
+			ctx.beginPath();
+		  	ctx.arc(t2[0],t2[1],Math.ceil(Earth.radius/4),0,2*Math.PI);
+		  	ctx.fill();
+		ctx.closePath();
+
+		// description of axis' units
+		ctx.fillStyle = 'rgba(0,0,0,1)';
+		ctx.font = "10px Arial";
+		ctx.fillText(zoom + " AU",t2[0] - ctx.measureText("1 AU").width/2, t2[1] - Math.ceil(Earth.radius/4) - 2);
+	}
+
+	// draw objects on canvas
+	var temp_vec = [];
+	var temp_vec2 = [];
+	for(o = 0; o < num_of_objects; o++) {
+		m = temp_arr[o];
+		// show active info about the planet if desired
+		if(document.getElementById("info_checkbox").checked && (pause == 0)) {
+			if(objects[m].active == 1 && document.getElementById(objects[m].name)) {
+				updatePlanetDiv(m);
+			}
+		}
+		// continue iff the object's distance from the sun is less than zoom * 1.5 ?
+		if((distances[m][0] < (zoom*3) && distances[m][0] > zoom*0.1) || distances[m][0] == 0){ 
+			temp_vec = transform_vec(objects[m].position);
+
+			if(objects[m].active == 1) {
+				//ctx.fillStyle = 'rgba(0,0,0,1)';
+				//ctx.font = "12px Arial";
+				//	ctx.fillText("x: " + objects[m].position[0].toFixed(3) ,temp_vec[0], temp_vec[1]+Math.ceil(objects[m].radius/zoom) + 12);
+				//	ctx.fillText("y: " + objects[m].position[1].toFixed(3) ,temp_vec[0], temp_vec[1]+Math.ceil(objects[m].radius/zoom) + 12*2);
+				//	ctx.fillText("z: " + objects[m].position[2].toFixed(3) ,temp_vec[0], temp_vec[1]+Math.ceil(objects[m].radius/zoom) + 12*3);
+
+				// planet names
+				ctx.fillStyle = 'rgba(0,0,0,1)';
+				ctx.font = "12px Arial";
+				ctx.fillText(objects[m].czech_name,temp_vec[0] - ctx.measureText(objects[m].czech_name).width/2, temp_vec[1] - Math.ceil(objects[m].radius/zoom) - 2);
+
+				if(objects[m].show_track == 1) {
+					// leaves trace
+					for(n = 0; n < objects[m].trace.length; n++) {
+						temp_vec2 = transform_vec(objects[m].trace[n]);
+
+						ctx.beginPath(); 
+							ctx.arc(temp_vec2[0] , temp_vec2[1] ,1,0,2*Math.PI); ctx.fill();
+						ctx.closePath();
+					}
+				}
+
+				if(objects[m].show_prediction == 1) {
+					// shows prediction
+					ctx.fillStyle = 'rgba(0,0,0,0.50)';
+					for(n = 0; n < objects[m].prediction.length; n++) {
+						temp_vec2 = transform_vec(objects[m].prediction[n]);
+
+						ctx.beginPath(); 
+							ctx.arc(temp_vec2[0] , temp_vec2[1] ,1,0,2*Math.PI); ctx.fill();
+						ctx.closePath();
+					}
+				}
+			}
+
+			// planets themselves
+			ctx.fillStyle = objects[m].color;
+			ctx.beginPath(); 
+				ctx.arc(temp_vec[0],temp_vec[1],Math.ceil(objects[m].radius/zoom),0,2*Math.PI); ctx.fill();
+			ctx.closePath();
+
+			// remove trace if not active
+			if( objects[m].trace.length>0 ) {
+				if(objects[m].active != 1) {
+					objects[m].trace = [];
+				}
+			}
+		}
+	}
+	
+
+  	// updates alfa, beta from the sliders
+  	alfa = document.getElementById("alfa").value *(2*Math.PI/360);
+	beta = document.getElementById("beta").value *(2*Math.PI/360);
+
+	// updates camera position according to alfa, beta
+	camera.forward[2] = Math.sin(beta);
+	camera.forward[1] = Math.cos(beta) * Math.sin(alfa);
+	camera.forward[0] = Math.cos(beta) * Math.cos(alfa);
+
+	camera.up[2] = Math.cos(beta);
+	camera.up[1] = Math.sin(-beta) * Math.sin(alfa);
+	camera.up[0] = Math.sin(-beta) * Math.cos(alfa);
+
+	t1 = cross_product(camera.up, camera.forward);
+	camera.sideways[0] = t1[0];
+	camera.sideways[1] = t1[1];
+	camera.sideways[2] = t1[2];
+
+	camera.z =  10000 * camera.forward[2];
+	camera.y = 	10000 *  camera.forward[1];
+	camera.x =  10000 * camera.forward[0];
+
+	// calls next animation frame
+	window.requestAnimationFrame(draw);	
+}
+
+// function takes any vector in 3D and returns its projection ('its shadow') onto a plane
+// the plane is specifed by a normal vector
+// normal vector to the plane is given by camera position and is equal to = (camera.x, camera.y, camera.z)
+var x, y, z;
+var vector_x, vector_y, vector_z;
+var proj_vector = [];
+function projection(vector) {
+	x = camera.forward[0];
+	y = camera.forward[1];
+	z = camera.forward[2];
+
+	//var distance2 = Math.pow(x,2) + Math.pow(y,2) + Math.pow(z,2);
+	vector_x = vector[0];
+	vector_y = vector[1];
+	vector_z = vector[2];
+
+	proj_vector = [];
+	proj_vector[0] =  ((Math.pow(y,2) + Math.pow(z,2)) * vector_x - x * y * vector_y - x * z * vector_z);
+	proj_vector[1] =  (-x * y * vector_x + (Math.pow(x,2) + Math.pow(z,2)) * vector_y - y * z * vector_z);
+	proj_vector[2] =  (-x * z * vector_x - y * z * vector_y + (Math.pow(x,2) + Math.pow(y,2)) * vector_z);
+
+ 	return proj_vector;
+}
+
+// function takes vector which lies on the specified plane and returns the same vector given in a different coordinate system
+// the new coordiate system is the plane onte which we have projected
+// the new basis must be orthogonal to each other and have length of 1
+var alt_bases_vec = [];
+var u = [];
+var w = [];
+var distance;
+function alt_bases(vector) {
+	u[0] = camera.up[0];
+	u[1] = camera.up[1];
+	u[2] = camera.up[2];
+
+	w[0] = camera.sideways[0];
+	w[1] = camera.sideways[1];
+	w[2] = camera.sideways[2];
+	// if two of u components are 0 - then do everything differently
+	if( (Math.abs(w[0]) < 10E-9 && Math.abs(w[1]) < 10E-9 ) || (Math.abs(w[0]) < 10E-9 && Math.abs(w[2]) < 10E-9 ) || (Math.abs(w[1]) < 10E-9 && Math.abs(w[2]) < 10E-9 ) ){
+		if(w[0] == 1) { 
+			alt_bases_vec[1] = vector[1] / u[1];
+			alt_bases_vec[0] = vector[0] - alt_bases_vec[1] * u[0];
+		} else  { // w[0] == -1
+			alt_bases_vec[1] = vector[1] / u[1];
+			alt_bases_vec[0] = - (vector[0] - alt_bases_vec[1] * u[0]);
+		}
+	/*
+		if(u[0] == 0 && u[1] == 0) {
+
+		} else if(u[0] == 0 && u[2] == 0) {
+
+		} else if(u[1] == 0 && u[2] == 0) {
+
+		}
+	*/
+		
+	} else {
+		if(u[0] != 0) {
+			alt_bases_vec[0] = (vector[1] * u[0] - vector[0] * u[1]) / (w[1] * u[0] - w[0] * u[1]);
+			alt_bases_vec[1] = (vector[0] - alt_bases_vec[0] * w[0]) / u[0];
+		} else if(u[1] != 0) {
+			alt_bases_vec[0] = (vector[2] * u[1] - vector[1] * u[2]) / (w[2] * u[1] - w[1] * u[2]);
+			alt_bases_vec[1] = (vector[1] - alt_bases_vec[0] * w[1]) / u[1];
+		} else if(u[2] != 0) {
+			alt_bases_vec[0] = (vector[0] * u[2] - vector[2] * u[0]) / (w[0] * u[2] - w[2] * u[0]);
+			alt_bases_vec[1] = (vector[2] - alt_bases_vec[0] * w[2]) / u[2];
+		} else {
+			alt_bases_vec[0] = 0;
+			alt_bases_vec[1] = 0;
+			console.log("alt bases vec mistake");
+		}
+	}
+	alt_bases_vec[1] = - alt_bases_vec[1];
+	return alt_bases_vec;
+}
+
+// function converts units which we used during the calculation into pixels - 1 AU = document.getElementById('myCanvas').width/4 px in canvas 1
+var converted_vec = [];
+function unit_convert(vector) {
+	converted_vec = [];
+	converted_vec[0] = vector[0]*document.getElementById('myCanvas').width/(4*zoom);
+	converted_vec[1] = vector[1]*document.getElementById('myCanvas').width/(4*zoom);
+	return converted_vec;
+}
+
+// function shifts vectors - it is needed because the coordinaets on a canvas starts in the upper left corner and goes from 0 up
+var shifted_vec = [];
+function shift_vec(vector){
+	shifted_vec = [];
+	shifted_vec[0] = vector[0] + document.getElementById('myCanvas').width/2;
+	shifted_vec[1] = vector[1] + document.getElementById('myCanvas').height/2;
+	return shifted_vec;
+}
+
+// function combines all the operations which are needed to show a 3D vecter (which we have counted) as a 2D vecter on the HTML canvas 1
+function transform_vec(vector) {
+	return shift_vec(unit_convert(alt_bases(projection(vector))));
+}
+
+// function counts vectors' lengths
+function vec_length(vector) {
+	var h;
+	var sum = 0;
+	for(h = 0; h < vector.length; h++) {
+		sum = sum + vector[h]*vector[h];
+	}
+	return Math.sqrt(sum);
+}
+
+// counts dot product of two vectors
+function dot_product(vec1, vec2) {
+	return vec1[0] * vec2[0] + vec1[1] * vec2[1] + vec1[2] * vec2[2]; 
+}
+
+function vec_cos_angle(vec1, vec2) {
+	return Math.abs(dot_product(vec1, vec2)) / (vec_length(vec1) * vec_length(vec2));
+}
+
+function cross_product(vec1, vec2) {
+	var temp_vec = [];
+	temp_vec[0] = vec1[1] * vec2[2] - vec1[2] * vec2[1];
+	temp_vec[1] = vec1[2] * vec2[0] - vec1[0] * vec2[2];
+	temp_vec[2] = vec1[0] * vec2[1] - vec1[1] * vec2[0];
+	return temp_vec;
+}
+
+function vec_subtract(vec1, vec2) {
+	var h;
+	var temp_vec = [];
+	for(h = 0; h < vec1.length; h++) {
+		temp_vec[h] = vec1[h] - vec2[h];
+	}
+	return temp_vec;
+}
+
+function vec_add(vec1, vec2) {
+	var h;
+	var temp_vec = [];
+	for(h = 0; h < vec1.length; h++) {
+		temp_vec[h] = vec1[h] + vec2[h];
+	}
+	return temp_vec;
+}
+// stops the calculation but it continues rendering
+function pauseCalculation() {
+	if(pause == 0) {
+		pause = 1;
+		document.getElementById("pause_button").innerHTML =  "Start";
+		for(p = 0; p < (num_of_objects - 1); p++) {
+			if(document.getElementById(objects[p].name)) {
+				// if the info div exists then change the readonly properties of its inputs
+				document.getElementById(objects[p].name + "_x").readOnly = false;
+				document.getElementById(objects[p].name + "_y").readOnly = false;
+				document.getElementById(objects[p].name + "_z").readOnly = false;
+
+				document.getElementById(objects[p].name + "_vx").readOnly = false;
+				document.getElementById(objects[p].name + "_vy").readOnly = false;
+				document.getElementById(objects[p].name + "_vz").readOnly = false;
+					
+				//	cannot change force
+				/*
+				document.getElementById(objects[p].name + "_Fx").readOnly = false;
+				document.getElementById(objects[p].name + "_Fy").readOnly = false;
+				document.getElementById(objects[p].name + "_Fz").readOnly = false;
+				*/
+
+			}
+		}
+	} else {
+		pause = 0;
+		document.getElementById("pause_button").innerHTML = "Stop";
+	}
+}
+// reverse the sign of epsilon
+function reverseCalculation() {
+	epsilon = -epsilon;
+	document.getElementById("epsilon_input").value = epsilon;
+}
+// shows or hide info
+function showInfo() {
+	// creates or removes all the info divs about planets
+		if(!document.getElementById("info_checkbox").checked) {
+			for(p = 0; p < num_of_objects; p++) {
+				if(objects[p].active == 1 && document.getElementById(objects[p].name)) {
+					document.getElementById(objects[p].name).remove();
+					objects[p].show_more_info = 0;
+				}
+			}
+		} else {
+			for(p = 0; p < num_of_objects; p++) {
+				if(objects[p].active == 1) {
+					createPlanetDiv(p);
+				}
+			}
+		}
+}
+// converts units of velociy which are used in the calculation (AU/d) to km/s
+function convertVelocity(number) {
+	return number * 1731.456837;
+}
+// converts it back
+function convertVelocityBack(number) {
+	return number / 1731.456837;
+}
+// converts units of a (AU/d^2) to mN/kg
+function convertAcceleration(number) {
+	return number * 20.04000969 * 1000;
+}
+// converts it back
+function convertAccelerationBack(number) {
+	return number / (20.04000969 * 1000);
+}
+// converts energy to Joules * 10^30
+function convertEnergy(number) {
+	return number * (5.961559111E+9);
+}
+
+// converts force in Mo AU / d^2 to Newtons 
+function convertForce(number) {
+	return number * 3.985056126E+31;
+}
+// converts force back 
+function convertForceBack(number) {
+	return number / 3.985056126E+31;
+}
+// converts mass from Mo to kg
+function convertMass(number) {
+	return number * 1.98855E+30;
+}
+// converts mass back
+function convertMassBack(number) {
+	return number / 1.98855E+30;
+}
+function convertFuelCon(number) {
+	return number * 2.3015625E+25;
+}
+function convertFuelConBack(number) {
+	return number / 2.3015625E+25;
+}
+// creates info div about the planet (objects[order]) if desired
+var temp_html;
+function createPlanetDiv(order) {
+	// checks if apply force is checked
+	/*
+	if(objects[order].apply_force == 1) {
+		temp_html = "<div class='ap_div'>"+
+			"<input type='radio' name='ap_radio' id='r1_"+order+"' value='1' />direction of motion<br/>"+
+			"&alpha;: <input type='text' id='r1_alpha"+order+"'><br>" +
+			"&beta;: <input type='text' id='r1_beta"+order+"' ><br>" +
+			"F: <input type='text' id='r1_force"+order+"'><span class='exponent'>x10<sup>21</sup></span> N<br>" +
+			"m: <input type='text' id='r1_fuel_mass"+order+"'><span class='exponent'>x10<sup>26</sup></span> kg<br>" +
+			"-dm/dt: <input type='text' id='r1_fuel_con"+order+"'><span class='exponent'>x10<sup>26</sup></span> kg/s<br>" +
+		"</div>" +
+		"<div class='ap_div'>"+
+			"<input type='radio' name='ap_radio' id='r2_"+order+"' value='2' />direction from central body<br/>"+
+		"</div>" +
+		"<div class='ap_div'>"+
+		"<input type='radio' name='ap_radio' id='r3_"+order+"' value='3' />general direction<br/>"+
+		"</div>"+
+		'<div class="confirm_ap_div"> <span> '+
+			'<button type="button" onclick="cancelAF('+order+');">Zrušit</button>' +
+			'<button type="button" onclick="confirmAF('+order+');">Potvrdit</button>' +
+		'</span> </div>'
+		;
+	} else {
+		temp_html = "";
+	}
+	*/
+	if(objects[order].apply_force == 1) {
+		temp_html = "<div class='ap_div1'>"+
+			"Direction:<br>" +
+				"<input type='radio' name='ap_radio' id='r1_"+order+"' value='1' /><label for='r1_"+order+"'></label>of motion<br/>"+
+				"<input type='radio' name='ap_radio' id='r2_"+order+"' value='2' /><label for='r2_"+order+"'></label>from the Sun<br/>"+
+				"<input type='radio' name='ap_radio' id='r3_"+order+"' value='3' /><label for='r3_"+order+"'></label>general"+
+		"</div>" +
+		"<div class='ap_div2'>"+
+			"Deviation:<br/>" +
+			"<span class='span_var_name'> &alpha;: </span><input type='text' id='r1_alpha"+order+"'><span class='span_unit_name'> &deg; </span><br>" +
+			"<span class='span_var_name'> &beta;: </span><input type='text' id='r1_beta"+order+"'><span class='span_unit_name'> &deg; </span>" +
+		"</div>" +
+		"<div class='ap_div3'>"+
+			"Parameters:<br>" +
+			"<span class='span_long_var_name'>Thrust:</span><input type='text' id='r1_force"+order+"'><span class='span_unit_name'><span class='exponent'>x10<sup>21</sup></span> N</span><br>" +
+			"<span class='span_long_var_name'>Fuel:</span><input type='text' id='r1_fuel_mass"+order+"'><span class='span_unit_name'><span class='exponent'>x10<sup>26</sup></span> kg</span><br>" +
+			"<span class='span_long_var_name'>Cons.:</span><input type='text' id='r1_fuel_con"+order+"'><span class='span_unit_name'><span class='exponent'>x10<sup>26</sup></span> kg/s</span>" +
+		"</div>"+
+		'<div class="confirm_ap_div"> <span> '+
+			'<button type="button" onclick="cancelAF('+order+');">Cancel</button>' +
+			'<button type="button" onclick="confirmAF('+order+');">Confirm</button>' +
+		'</span> </div>'
+		;
+	} else {
+		temp_html = "";
+	}
+
+	// creates new div
+	div = document.createElement('div');
+	document.getElementById("objects_info").appendChild(div);
+	div.id = objects[order].name;
+	div.innerHTML = '<h4>' + objects[order].czech_name +'</h4><span class="span_planet_opt"><input type="checkbox" id="tick_apply_force'+order+'" onclick="tickApplyForce('+order+');" '+chekcedApplyForce(order)+'><label for="tick_apply_force'+order+'"></label> apply force</span><span class="span_planet_opt"><input type="checkbox" id="tick_prediction'+order+'" onclick="showPrediction('+order+');" '+ checkedPrediction(order) +'><label for="tick_prediction'+order+'"></label> prediction</span><span class="span_planet_opt"> <input type="checkbox" id="tick_track'+order+'" onclick="tickShowTrack('+order+');"'+ checkedTrack(order) +'><label for="tick_track'+order+'"></label> trajectory</span><br/><hr>' +
+	'<div class="position">' +
+		'<span class="span_var_name">x: </span><input onchange="changeInputValue('+ '\'' + objects[order].name + '_x' + '\'' + ',0,' + order + ');" type="text" value="'+ showMonospaceValue(objects[order].position[0]) +'" id="'+ objects[order].name+'_x" '+ pausedReadonly() +'><span class="span_unit_name"> AU</span><br>' +
+		'<span class="span_var_name">y: </span><input onchange="changeInputValue('+ '\'' + objects[order].name + '_y' + '\'' + ',1,' + order + ');" type="text" value="'+ showMonospaceValue(objects[order].position[1]) +'" id="'+ objects[order].name+'_y" '+ pausedReadonly() +'><span class="span_unit_name"> AU</span><br>' +
+		'<span class="span_var_name">z: </span><input onchange="changeInputValue('+ '\'' + objects[order].name + '_z' + '\'' + ',2,' + order + ');" type="text" value="'+ showMonospaceValue(objects[order].position[2]) +'" id="'+ objects[order].name+'_z" '+ pausedReadonly() +'><span class="span_unit_name"> AU</span><br>' +
+		'<span class="span_last_var_name">r: </span><input type="text" value="'+ showMonospaceValue(distances[order][0]) +'" id="'+ objects[order].name+'_r" readonly><span class="span_unit_name"> AU</span>' +
+	'</div>' +
+	'<div class="velocity">'+
+		'<span class="span_var_name">v<sub>x</sub>: </span><input onchange="changeInputValue(' + '\'' + objects[order].name + '_vx' + '\'' +',3,' + order + ');" type="text" value="'+ showMonospaceValue(convertVelocity(objects[order].velocity[0]) ) +'" id="'+ objects[order].name+'_vx" '+ pausedReadonly() +'><span class="span_unit_name"> km/s </span><br>' +
+		'<span class="span_var_name">v<sub>y</sub>: </span><input onchange="changeInputValue(' + '\'' + objects[order].name + '_vy' + '\'' +',4,' + order + ');" type="text" value="'+ showMonospaceValue(convertVelocity(objects[order].velocity[1]) ) +'" id="'+ objects[order].name+'_vy" '+ pausedReadonly() +'><span class="span_unit_name"> km/s </span><br>' +
+		'<span class="span_var_name">v<sub>z</sub>: </span><input onchange="changeInputValue(' + '\'' + objects[order].name + '_vz' + '\'' +',5,' + order + ');" type="text" value="'+ showMonospaceValue(convertVelocity(objects[order].velocity[2]) ) +'" id="'+ objects[order].name+'_vz" '+ pausedReadonly() +'><span class="span_unit_name"> km/s </span><br>' +
+		'<span class="span_last_var_name">v: </span><input type="text" value="'+ showMonospaceValue(convertVelocity(objects[order].speed) ) +'" id="'+ objects[order].name+'_v" readonly><span class="span_unit_name"> km/s </span>' +
+	'</div>' +
+	'<div class="acceleration">'+
+		'<span class="span_var_name">F<sub>x</sub>: </span><input onchange="changeInputValue('+ '\'' + objects[order].name + '_Fx' + '\'' +',6,' + order + ');" type="text" value="'+ showMonospaceValue(convertForce( objects[order].acceleration[0] * objects[order].mass / 10E+21).toFixed(9) ) +'" id="'+ objects[order].name+'_Fx" readonly><span class="span_unit_name"> <span class="exponent">x10<sup>21</sup></span> N </span><br>' +
+		'<span class="span_var_name">F<sub>y</sub>: </span><input onchange="changeInputValue('+ '\'' + objects[order].name + '_Fy' + '\'' +',7,' + order + ');" type="text" value="'+ showMonospaceValue(convertForce( objects[order].acceleration[1] * objects[order].mass / 10E+21).toFixed(9) ) +'" id="'+ objects[order].name+'_Fy" readonly><span class="span_unit_name"> <span class="exponent">x10<sup>21</sup></span> N </span><br>' +
+		'<span class="span_var_name">F<sub>z</sub>: </span><input onchange="changeInputValue('+ '\'' + objects[order].name + '_Fz' + '\'' +',8,' + order + ');" type="text" value="'+ showMonospaceValue(convertForce( objects[order].acceleration[2] * objects[order].mass / 10E+21).toFixed(9) ) +'" id="'+ objects[order].name+'_Fz" readonly><span class="span_unit_name"> <span class="exponent">x10<sup>21</sup></span> N </span><br>' +
+		'<span class="span_last_var_name">F: </span><input type="text" value="'+ showMonospaceValue(convertForce( objects[order].ac_length * objects[order].mass / 10E+21).toFixed(9) ) +'" id="'+ objects[order].name+'_F" readonly><span class="span_unit_name"> <span class="exponent">x10<sup>21</sup></span> N </span>' +
+	'</div>' +
+	'<div class="more_info" id="'+objects[order].name+'_more_info"> <span id="more_info_button"><button type="button" onclick="showMoreInfo('+ order +')">More info</button></span> </div>' +
+	'<div class="apply_force_div" id="apply_force_div'+order+'">' + temp_html + '</div>'
+		;
+}
+function pausedReadonly() {
+	if(pause == 0) {
+		return "readonly";
+	}
+}
+function checkedTrack(order_num) {
+	if(objects[order_num].show_track == 1) {
+		return "checked";
+	}
+}
+function checkedPrediction(order_num) {
+	if(objects[order_num].show_prediction == 1) {
+		return "checked";
+	}
+}
+function chekcedApplyForce(order_num) {
+	if(objects[order_num].apply_force == 1) {
+		return "checked";
+	}
+}
+// updates div info about planets if desired
+function updatePlanetDiv(order) {
+	// checks if apply force is checked
+	if(objects[order].apply_force == 1) {
+		temp_html = "<div class='ap_div1'>"+
+			"Direction:<br>" +
+				"<input type='radio' name='ap_radio' id='r1_"+order+"' value='1' /><label for='r1_"+order+"'></label>of motion<br/>"+
+				"<input type='radio' name='ap_radio' id='r2_"+order+"' value='2' /><label for='r2_"+order+"'></label>from the Sun<br/>"+
+				"<input type='radio' name='ap_radio' id='r3_"+order+"' value='3' /><label for='r3_"+order+"'></label>general"+
+		"</div>" +
+		"<div class='ap_div2'>"+
+			"Deviation:<br/>" +
+			"<span class='span_var_name'> &alpha;: </span><input type='text' id='r1_alpha"+order+"'><span class='span_unit_name'> &deg; </span><br>" +
+			"<span class='span_var_name'> &beta;: </span><input type='text' id='r1_beta"+order+"'><span class='span_unit_name'> &deg; </span>" +
+		"</div>" +
+		"<div class='ap_div3'>"+
+			"Parameters:<br>" +
+			"<span class='span_long_var_name'>Thrust:</span><input type='text' id='r1_force"+order+"'><span class='span_unit_name'><span class='exponent'>x10<sup>21</sup></span> N</span><br>" +
+			"<span class='span_long_var_name'>Fuel:</span><input type='text' id='r1_fuel_mass"+order+"'><span class='span_unit_name'><span class='exponent'>x10<sup>26</sup></span> kg</span><br>" +
+			"<span class='span_long_var_name'>Cons.:</span><input type='text' id='r1_fuel_con"+order+"'><span class='span_unit_name'><span class='exponent'>x10<sup>26</sup></span> kg/s</span>" +
+		"</div>"+
+		'<div class="confirm_ap_div"> <span> '+
+			'<button type="button" onclick="cancelAF('+order+');">Cancel</button>' +
+			'<button type="button" onclick="confirmAF('+order+');">Confirm</button>' +
+		'</span> </div>'
+		;
+	} else {
+		temp_html = "";
+		document.getElementById("tick_apply_force"+order).checked = 0;
+	}
+	document.getElementById("apply_force_div" + order).innerHTML = temp_html;
+
+	document.getElementById(objects[order].name + "_x").value = showMonospaceValue(objects[order].position[0]);
+	document.getElementById(objects[order].name + "_y").value = showMonospaceValue(objects[order].position[1]);
+	document.getElementById(objects[order].name + "_z").value = showMonospaceValue(objects[order].position[2]);
+
+	document.getElementById(objects[order].name + "_vx").value = showMonospaceValue(convertVelocity( objects[order].velocity[0]));
+	document.getElementById(objects[order].name + "_vy").value = showMonospaceValue(convertVelocity( objects[order].velocity[1]));
+	document.getElementById(objects[order].name + "_vz").value = showMonospaceValue(convertVelocity( objects[order].velocity[2]));
+
+	document.getElementById(objects[order].name + "_Fx").value = showMonospaceValue(convertForce( objects[order].acceleration[0] * objects[order].mass / 10E+21).toFixed(9));
+	document.getElementById(objects[order].name + "_Fy").value = showMonospaceValue(convertForce( objects[order].acceleration[1] * objects[order].mass / 10E+21).toFixed(9));
+	document.getElementById(objects[order].name + "_Fz").value = showMonospaceValue(convertForce( objects[order].acceleration[2] * objects[order].mass / 10E+21).toFixed(9));
+
+	document.getElementById(objects[order].name + "_r").value = showMonospaceValue(distances[order][0]);
+	document.getElementById(objects[order].name + "_v").value = showMonospaceValue(convertVelocity(objects[order].speed) );
+	document.getElementById(objects[order].name + "_F").value = showMonospaceValue(convertForce( objects[order].ac_length * objects[order].mass / 10E+21).toFixed(9) );
+	if(objects[order].show_more_info == 1) {
+		document.getElementById(objects[order].name + "_vu").value = showMonospaceValue( convertVelocity(objects[order].escape_speed) );
+		document.getElementById(objects[order].name + "_E").value = showMonospaceValue( convertEnergy(objects[order].total_energy) );
+		document.getElementById(objects[order].name + "_Ek").value = showMonospaceValue( convertEnergy(objects[order].kinetic_energy) );
+		document.getElementById(objects[order].name + "_Ep").value = showMonospaceValue( convertEnergy(objects[order].potential_energy) );
+		document.getElementById(objects[order].name + "_M").value = showMonospaceValue((convertMass(objects[order].mass)/1e+26).toFixed(9))
+	}
+	if(objects[order].apply_force == 1 && objects[order].force != 0) {
+		if(objects[order].ap_radio == 1) {
+			document.getElementById("r1_"+order).checked = 1;
+		} else if(objects[order].ap_radio == 2) {
+			document.getElementById("r2_"+order).checked = 1;
+		} else if(objects[order].ap_radio == 3) {
+			document.getElementById("r3_"+order).checked = 1;
+		}
+		document.getElementById("r1_alpha"+order).value = showMonospaceValue( objects[order].alpha * 180 / Math.PI );
+		document.getElementById("r1_beta"+order).value = showMonospaceValue( objects[order].beta * 180 / Math.PI );
+
+		document.getElementById("r1_force"+order).value = showMonospaceValue(convertForce( objects[order].force ) / 1e+21);
+		document.getElementById("r1_fuel_mass"+order).value = showMonospaceValue(convertMass(objects[order].fuel_mass) / 1e+26);
+		document.getElementById("r1_fuel_con"+order).value = showMonospaceValue(convertFuelCon(objects[order].fuel_con) / 1e+26);
+	}
+}
+// adds a space before the string if the number is negative
+function showMonospaceValue(number) {
+	if(number > 0) {
+		return " " + number;
+	} else {
+		return number;
+	}
+}
+var temp_value;
+function changeInputValue(elementID, code, order_num) {
+	temp_value = parseFloat(document.getElementById(elementID).value);
+	if(code < 3) { // for position
+		if(code == 0) {
+			if(!isNaN(temp_value)) {
+				objects[order_num].position[0] = temp_value;
+			}
+		} else if(code == 1) {
+			if(!isNaN(temp_value)) {
+				objects[order_num].position[1] = temp_value;
+			}
+		} else if(code == 2) {
+			if(!isNaN(temp_value)) {
+				objects[order_num].position[2] = temp_value;
+			}
+		}
+	} else if(code < 6) { // for velocity
+		if(code == 3) {
+			if(!isNaN(temp_value)) {
+				objects[order_num].velocity[0] = convertVelocityBack( temp_value );
+			}
+		} else if(code == 4) {
+			if(!isNaN(temp_value)) {
+				objects[order_num].velocity[1] = convertVelocityBack( temp_value );
+			}
+		} else if(code == 5) {
+			if(!isNaN(temp_value)) {
+				objects[order_num].velocity[2] = convertVelocityBack( temp_value );
+			}
+		}
+	} else if(code < 9) { // for acceleration
+		if(code == 6) {
+			if(!isNaN(temp_value)) {
+				objects[order_num].acceleration[0] = convertAccelerationBack( temp_value / objects[order_num].mass);
+			}
+		} else if(code == 7) {
+			if(!isNaN(temp_value)) {
+				objects[order_num].acceleration[1] = convertAccelerationBack( temp_value / objects[order_num].mass );
+			}
+		} else if(code == 8) {
+			if(!isNaN(temp_value)) {
+				objects[order_num].acceleration[2] = convertAccelerationBack( temp_value / objects[order_num].mass );
+			}
+		}
+	} else {
+		console.log("Input Error");
+	}
+}
+
+function tickShowTrack(order_num){
+	if(objects[order_num].show_track == 1) {
+		objects[order_num].show_track = 0;
+		objects[order_num].trace = [];
+	} else {
+		objects[order_num].show_track = 1;
+	}
+}
+var pred_temp_vec = [];
+var pred_temp_vec2 = [];
+var planet_pos = [];
+var planet_vel = [];
+var pred_x;
+var pred_y;
+var pred_cos;
+var pred_sin;
+
+var pred_u1 = [];
+var pred_u2 = [];
+var pred_temp_num;
+var pred_m = 0;
+var pred_t = 0;
+function showPrediction(order_num) {
+	if(objects[order_num].show_prediction == 1) {
+		objects[order_num].show_prediction = 0;
+		objects[order_num].prediction = [];
+	} else {
+		objects[order_num].show_prediction = 1;
+
+		console.log(objects[order_num].name);
+		// count orthonormal basis for the plane given by r_planet - r_sun (x-axis) and v_planet (y-axis)
+		pred_temp_vec[0] = objects[order_num].position[0] - objects[0].position[0];
+		pred_temp_vec[1] = objects[order_num].position[1] - objects[0].position[1];
+		pred_temp_vec[2] = objects[order_num].position[2] - objects[0].position[2];
+
+		pred_temp_num = Math.sqrt( Math.pow(pred_temp_vec[0],2) + Math.pow(pred_temp_vec[1],2) + Math.pow(pred_temp_vec[2],2) );
+		//console.log("The planet distance from the Sun = " + pred_temp_num);
+
+		pred_u1[0] = 1/pred_temp_num * pred_temp_vec[0];
+		pred_u1[1] = 1/pred_temp_num * pred_temp_vec[1];
+		pred_u1[2] = 1/pred_temp_num * pred_temp_vec[2];
+
+		pred_temp_vec2[0] = objects[order_num].velocity[0]; // v2
+		pred_temp_vec2[1] = objects[order_num].velocity[1];
+		pred_temp_vec2[2] = objects[order_num].velocity[2];
+
+		pred_temp_num = dot_product(pred_temp_vec2, pred_u1);
+
+		pred_temp_vec[0] = pred_temp_vec2[0] - pred_temp_num * pred_u1[0]; // temp y
+		pred_temp_vec[1] = pred_temp_vec2[1] - pred_temp_num * pred_u1[1]; 
+		pred_temp_vec[2] = pred_temp_vec2[2] - pred_temp_num * pred_u1[2]; 
+
+		pred_temp_num = Math.sqrt(Math.pow(pred_temp_vec[0],2) + Math.pow(pred_temp_vec[1],2) + Math.pow(pred_temp_vec[2],2) );
+
+		pred_u2[0] = 1/pred_temp_num * pred_temp_vec[0];
+		pred_u2[1] = 1/pred_temp_num * pred_temp_vec[1];
+		pred_u2[2] = 1/pred_temp_num * pred_temp_vec[2];
+
+
+		// start counting the prediction
+		objects[order_num].speed = Math.sqrt(Math.pow(objects[order_num].velocity[0],2) + Math.pow(objects[order_num].velocity[1],2) + Math.pow(objects[order_num].velocity[2],2) );
+		
+		objects[order_num].kinetic_energy = 0.5 * objects[order_num].mass * Math.pow(objects[order_num].speed,2);
+		objects[order_num].potential_energy = - G * objects[order_num].mass * objects[0].mass / distances[order_num][0];
+		objects[order_num].total_energy = objects[order_num].kinetic_energy + objects[order_num].potential_energy;
+
+		objects[order_num].major_axis = - G * objects[order_num].mass * objects[0].mass / (2 * objects[order_num].total_energy);
+
+		// temp_vec = r_planet - r_sun
+		pred_temp_vec[0] = objects[order_num].position[0] - objects[0].position[0];
+		pred_temp_vec[1] = objects[order_num].position[1] - objects[0].position[1];
+		pred_temp_vec[2] = objects[order_num].position[2] - objects[0].position[2];
+
+		objects[order_num].omega = 0.5 * objects[order_num].speed * distances[order_num][0] * Math.sqrt(1 - Math.pow( vec_cos_angle(pred_temp_vec,objects[order_num].velocity ),2));
+
+		objects[order_num].minor_axis = objects[order_num].omega * Math.sqrt(2 * objects[order_num].mass / (-objects[order_num].total_energy));
+		objects[order_num].eccentricity = Math.sqrt( Math.pow(objects[order_num].major_axis,2) - Math.pow(objects[order_num].minor_axis,2) );
+
+		objects[order_num].period = Math.PI * objects[order_num].major_axis * objects[order_num].minor_axis / objects[order_num].omega;
+
+/*
+		// zkouska
+		console.log("a = " + objects[order_num].major_axis);
+		console.log("b = " + objects[order_num].minor_axis);
+		console.log("e = " + objects[order_num].eccentricity);
+
+		console.log("E_k = " + objects[order_num].kinetic_energy);
+		console.log("E_p = " + objects[order_num].potential_energy);
+		console.log("E = " + objects[order_num].total_energy);
+		console.log("v = " + objects[order_num].speed);
+		console.log("w = " + objects[order_num].omega);
+		console.log("T = " + objects[order_num].period);
+*/
+
+
+		planet_pos = pred_alt_basis(objects[order_num].position);
+		pred_x = 2 * objects[order_num].major_axis - 2 * Math.pow(objects[order_num].minor_axis,2) / planet_pos[0];
+
+		pred_temp_vec[0] = objects[order_num].velocity[0] + objects[0].position[0];
+		pred_temp_vec[1] = objects[order_num].velocity[1] + objects[0].position[1];
+		pred_temp_vec[2] = objects[order_num].velocity[2] + objects[0].position[2];
+		planet_vel = pred_alt_basis(pred_temp_vec);
+
+
+		if( (planet_vel[0] > 0 && planet_vel[1] > 0 ) || (planet_vel[0] < 0 && planet_vel[1] < 0)) {
+			pred_y = Math.sqrt(4 * Math.pow(objects[order_num].eccentricity,2) - Math.pow(pred_x,2));
+		} else {
+			pred_y =  -Math.sqrt(4 * Math.pow(objects[order_num].eccentricity,2) - Math.pow(pred_x,2));
+		}
+
+		pred_cos = pred_x / Math.sqrt(Math.pow(pred_x,2) + Math.pow(pred_y,2));
+		if(pred_y > 0) {
+			pred_sin = Math.sqrt(1 - Math.pow(pred_cos,2));
+		} else {
+			pred_sin = -Math.sqrt(1 - Math.pow(pred_cos,2));
+		}
+
+		// recount the basis - right this time - it rotates the inital one by certain angle, lengths stay 1
+		// count orthonormal basis for the plane given by r_planet - r_sun (x-axis) and v_planet (y-axis)
+		pred_temp_vec[0] = pred_u1[0];
+		pred_temp_vec[1] = pred_u1[1];
+		pred_temp_vec[2] = pred_u1[2];
+
+		pred_u1[0] = pred_cos * pred_u1[0] + pred_sin * pred_u2[0];
+		pred_u1[1] = pred_cos * pred_u1[1] + pred_sin * pred_u2[1];
+		pred_u1[2] = pred_cos * pred_u1[2] + pred_sin * pred_u2[2];
+
+		pred_u2[0] = - pred_sin * pred_temp_vec[0] + pred_cos * pred_u2[0]; // v2, pred_temp_vec stands for the innital pred_u1
+		pred_u2[1] = - pred_sin * pred_temp_vec[1] + pred_cos * pred_u2[1];
+		pred_u2[2] = - pred_sin * pred_temp_vec[2] + pred_cos * pred_u2[2];
+
+		// 100 values for circle with radius of 1 AU
+		//objects[order_num].prediction = [];
+		pred_temp_num = 100;
+		pred_t = 0;
+
+		for(pred_m = 0; pred_m < pred_temp_num; pred_m++) {
+			pred_temp_vec[0] = objects[order_num].major_axis * Math.cos(pred_t) + objects[order_num].eccentricity;
+			pred_temp_vec[1] = objects[order_num].minor_axis * Math.sin(pred_t);
+
+			pred_temp_vec2[0] = pred_temp_vec[0] * pred_u1[0] + pred_temp_vec[1] * pred_u2[0];
+			pred_temp_vec2[1] = pred_temp_vec[0] * pred_u1[1] + pred_temp_vec[1] * pred_u2[1];
+			pred_temp_vec2[2] = pred_temp_vec[0] * pred_u1[2] + pred_temp_vec[1] * pred_u2[2];
+			objects[order_num].prediction.push([pred_temp_vec2[0],pred_temp_vec2[1],pred_temp_vec2[2]]); 
+			//console.log(pred_temp_vec2)
+
+			pred_t = pred_t + 2 * Math.PI / pred_temp_num;
+		}
+	}
+
+}
+function update_prediction(order_num) {
+	// count orthonormal basis for the plane given by r_planet - r_sun (x-axis) and v_planet (y-axis)
+		pred_temp_vec[0] = objects[order_num].position[0] - objects[0].position[0];
+		pred_temp_vec[1] = objects[order_num].position[1] - objects[0].position[1];
+		pred_temp_vec[2] = objects[order_num].position[2] - objects[0].position[2];
+
+		pred_temp_num = Math.sqrt( Math.pow(pred_temp_vec[0],2) + Math.pow(pred_temp_vec[1],2) + Math.pow(pred_temp_vec[2],2) );
+		//console.log("The planet distance from the Sun = " + pred_temp_num);
+
+		pred_u1[0] = 1/pred_temp_num * pred_temp_vec[0];
+		pred_u1[1] = 1/pred_temp_num * pred_temp_vec[1];
+		pred_u1[2] = 1/pred_temp_num * pred_temp_vec[2];
+
+		pred_temp_vec2[0] = objects[order_num].velocity[0]; // v2
+		pred_temp_vec2[1] = objects[order_num].velocity[1];
+		pred_temp_vec2[2] = objects[order_num].velocity[2];
+
+		pred_temp_num = dot_product(pred_temp_vec2, pred_u1);
+
+		pred_temp_vec[0] = pred_temp_vec2[0] - pred_temp_num * pred_u1[0]; // temp y
+		pred_temp_vec[1] = pred_temp_vec2[1] - pred_temp_num * pred_u1[1]; 
+		pred_temp_vec[2] = pred_temp_vec2[2] - pred_temp_num * pred_u1[2]; 
+
+		pred_temp_num = Math.sqrt(Math.pow(pred_temp_vec[0],2) + Math.pow(pred_temp_vec[1],2) + Math.pow(pred_temp_vec[2],2) );
+
+		pred_u2[0] = 1/pred_temp_num * pred_temp_vec[0];
+		pred_u2[1] = 1/pred_temp_num * pred_temp_vec[1];
+		pred_u2[2] = 1/pred_temp_num * pred_temp_vec[2];
+
+
+		// start counting the prediction
+		objects[order_num].speed = Math.sqrt(Math.pow(objects[order_num].velocity[0],2) + Math.pow(objects[order_num].velocity[1],2) + Math.pow(objects[order_num].velocity[2],2) );
+		
+		objects[order_num].kinetic_energy = 0.5 * objects[order_num].mass * Math.pow(objects[order_num].speed,2);
+		objects[order_num].potential_energy = - G * objects[order_num].mass * objects[0].mass / distances[order_num][0];
+		objects[order_num].total_energy = objects[order_num].kinetic_energy + objects[order_num].potential_energy;
+
+		objects[order_num].major_axis = - G * objects[order_num].mass * objects[0].mass / (2 * objects[order_num].total_energy);
+
+		// temp_vec = r_planet - r_sun
+		pred_temp_vec[0] = objects[order_num].position[0] - objects[0].position[0];
+		pred_temp_vec[1] = objects[order_num].position[1] - objects[0].position[1];
+		pred_temp_vec[2] = objects[order_num].position[2] - objects[0].position[2];
+
+		objects[order_num].omega = 0.5 * objects[order_num].speed * distances[order_num][0] * Math.sqrt(1 - Math.pow( vec_cos_angle(pred_temp_vec,objects[order_num].velocity ),2));
+
+		objects[order_num].minor_axis = objects[order_num].omega * Math.sqrt(2 * objects[order_num].mass / (-objects[order_num].total_energy));
+		objects[order_num].eccentricity = Math.sqrt( Math.pow(objects[order_num].major_axis,2) - Math.pow(objects[order_num].minor_axis,2) );
+
+		objects[order_num].period = Math.PI * objects[order_num].major_axis * objects[order_num].minor_axis / objects[order_num].omega;
+
+/*
+		// zkouska
+		console.log("a = " + objects[order_num].major_axis);
+		console.log("b = " + objects[order_num].minor_axis);
+		console.log("e = " + objects[order_num].eccentricity);
+
+		console.log("E_k = " + objects[order_num].kinetic_energy);
+		console.log("E_p = " + objects[order_num].potential_energy);
+		console.log("E = " + objects[order_num].total_energy);
+		console.log("v = " + objects[order_num].speed);
+		console.log("w = " + objects[order_num].omega);
+		console.log("T = " + objects[order_num].period);
+*/
+
+
+		planet_pos = pred_alt_basis(objects[order_num].position);
+		pred_x = 2 * objects[order_num].major_axis - 2 * Math.pow(objects[order_num].minor_axis,2) / planet_pos[0];
+
+		pred_temp_vec[0] = objects[order_num].velocity[0] + objects[0].position[0];
+		pred_temp_vec[1] = objects[order_num].velocity[1] + objects[0].position[1];
+		pred_temp_vec[2] = objects[order_num].velocity[2] + objects[0].position[2];
+		planet_vel = pred_alt_basis(pred_temp_vec);
+
+
+		if( (planet_vel[0] > 0 && planet_vel[1] > 0 ) || (planet_vel[0] < 0 && planet_vel[1] < 0)) {
+			pred_y = Math.sqrt(4 * Math.pow(objects[order_num].eccentricity,2) - Math.pow(pred_x,2));
+		} else {
+			pred_y =  -Math.sqrt(4 * Math.pow(objects[order_num].eccentricity,2) - Math.pow(pred_x,2));
+		}
+
+		pred_cos = pred_x / Math.sqrt(Math.pow(pred_x,2) + Math.pow(pred_y,2));
+		if(pred_y > 0) {
+			pred_sin = Math.sqrt(1 - Math.pow(pred_cos,2));
+		} else {
+			pred_sin = -Math.sqrt(1 - Math.pow(pred_cos,2));
+		}
+
+		// recount the basis - right this time - it rotates the inital one by certain angle, lengths stay 1
+		// count orthonormal basis for the plane given by r_planet - r_sun (x-axis) and v_planet (y-axis)
+		pred_temp_vec[0] = pred_u1[0];
+		pred_temp_vec[1] = pred_u1[1];
+		pred_temp_vec[2] = pred_u1[2];
+
+		pred_u1[0] = pred_cos * pred_u1[0] + pred_sin * pred_u2[0];
+		pred_u1[1] = pred_cos * pred_u1[1] + pred_sin * pred_u2[1];
+		pred_u1[2] = pred_cos * pred_u1[2] + pred_sin * pred_u2[2];
+
+		pred_u2[0] = - pred_sin * pred_temp_vec[0] + pred_cos * pred_u2[0]; // v2, pred_temp_vec stands for the innital pred_u1
+		pred_u2[1] = - pred_sin * pred_temp_vec[1] + pred_cos * pred_u2[1];
+		pred_u2[2] = - pred_sin * pred_temp_vec[2] + pred_cos * pred_u2[2];
+
+		// 100 values for circle with radius of 1 AU
+		//objects[order_num].prediction = [];
+		pred_temp_num = 100;
+		pred_t = 0;
+
+		objects[order_num].prediction = [];
+		for(pred_m = 0; pred_m < pred_temp_num; pred_m++) {
+			pred_temp_vec[0] = objects[order_num].major_axis * Math.cos(pred_t) + objects[order_num].eccentricity;
+			pred_temp_vec[1] = objects[order_num].minor_axis * Math.sin(pred_t);
+
+			pred_temp_vec2[0] = pred_temp_vec[0] * pred_u1[0] + pred_temp_vec[1] * pred_u2[0];
+			pred_temp_vec2[1] = pred_temp_vec[0] * pred_u1[1] + pred_temp_vec[1] * pred_u2[1];
+			pred_temp_vec2[2] = pred_temp_vec[0] * pred_u1[2] + pred_temp_vec[1] * pred_u2[2];
+			objects[order_num].prediction.push([pred_temp_vec2[0],pred_temp_vec2[1],pred_temp_vec2[2]]); 
+			//console.log(pred_temp_vec2)
+
+			pred_t = pred_t + 2 * Math.PI / pred_temp_num;
+		}
+}
+
+
+var pred_temp_alt_vec = [];
+var alt_vector = [];
+var alt_u1 = [];
+var alt_u2 = [];
+function pred_alt_basis(vector) {
+	// first shift the vector - center is in the Sun
+	alt_vector[0] = vector[0] - objects[0].position[0];
+	alt_vector[1] = vector[1] - objects[0].position[1];
+	alt_vector[2] = vector[2] - objects[0].position[2];
+
+	alt_u1[0] = pred_u1[0];
+	alt_u1[1] = pred_u1[1];
+	alt_u1[2] = pred_u1[2];
+
+	alt_u2[0] = pred_u2[0];
+	alt_u2[1] = pred_u2[1];
+	alt_u2[2] = pred_u2[2];
+
+	if(alt_u2[0] != 0) {
+		pred_temp_alt_vec[0] = (alt_vector[1] * alt_u2[0] - alt_vector[0] * alt_u2[1]) / (alt_u1[1] * alt_u2[0] - alt_u1[0] * alt_u2[1]);
+		pred_temp_alt_vec[1] = (alt_vector[0] - pred_temp_alt_vec[0] * alt_u1[0]) / alt_u2[0];
+	} else if(alt_u2[1] != 0) {
+		pred_temp_alt_vec[0] = (alt_vector[0] * alt_u2[1] - alt_vector[1] * alt_u2[0]) / (alt_u1[0] * alt_u2[1] - alt_u1[1] * alt_u2[0]);
+		pred_temp_alt_vec[1] = ( alt_vector[1] - pred_temp_alt_vec[0] * alt_u1[1]) / alt_u2[1];
+	} else {
+		console.log("predicstion alt basis error");
+	}
+	return pred_temp_alt_vec;
+}
+
+// shows more info about given planet
+function showMoreInfo(order_num) {
+	if(objects[order_num].show_more_info == 0) {
+		objects[order_num].show_more_info = 1;
+		if(order_num != 0) {
+			// start counting the prediction
+			
+			objects[order_num].kinetic_energy = 0.5 * objects[order_num].mass * Math.pow(objects[order_num].speed,2);
+			objects[order_num].potential_energy = - G * objects[order_num].mass * objects[0].mass / distances[order_num][0];
+			objects[order_num].total_energy = objects[order_num].kinetic_energy + objects[order_num].potential_energy;
+
+			objects[order_num].major_axis = - G * objects[order_num].mass * objects[0].mass / (2 * objects[order_num].total_energy);
+
+			// temp_vec = r_planet - r_sun
+			pred_temp_vec[0] = objects[order_num].position[0] - objects[0].position[0];
+			pred_temp_vec[1] = objects[order_num].position[1] - objects[0].position[1];
+			pred_temp_vec[2] = objects[order_num].position[2] - objects[0].position[2];
+
+			objects[order_num].omega = 0.5 * objects[order_num].speed * distances[order_num][0] * Math.sqrt(1 - Math.pow( vec_cos_angle(pred_temp_vec,objects[order_num].velocity ),2));
+
+			objects[order_num].minor_axis = objects[order_num].omega * Math.sqrt(2 * objects[order_num].mass / (-objects[order_num].total_energy));
+			objects[order_num].eccentricity = Math.sqrt( Math.pow(objects[order_num].major_axis,2) - Math.pow(objects[order_num].minor_axis,2) );
+
+			objects[order_num].period = Math.sqrt( (4 * Math.pow(Math.PI,2) * Math.pow(objects[order_num].major_axis,3))/( G * objects[0].mass ) );
+
+			objects[order_num].escape_speed = Math.sqrt( 2 * G * objects[0].mass / distances[order_num][0] );
+			document.getElementById(objects[order_num].name + "_more_info").innerHTML = ""+
+			"<div class='info_column'>"+
+				"<span class='span_var_name' title='semi-major axis'>a: </span><input type='text' value='"+ showMonospaceValue(objects[order_num].major_axis) +"' readonly><span class='span_unit_name'> AU</span><br>" +
+				"<span class='span_var_name' title='semi-minor axis'>b: </span><input type='text' value='"+ showMonospaceValue(objects[order_num].minor_axis) +"' readonly><span class='span_unit_name'> AU</span><br>" +
+				"<span class='span_var_name' title='eccentricity'>e: </span><input type='text' value='"+ showMonospaceValue(objects[order_num].eccentricity) +"' readonly><span class='span_unit_name'> AU</span>" +
+			"</div>"+
+			"<div class='info_column'>"+
+				"<span class='span_var_name' title='mechanical energy'>E: </span><input type='text' id='"+objects[order_num].name+"_E' value='"+ showMonospaceValue(convertEnergy(objects[order_num].total_energy)) +"' readonly><span class='span_unit_name'><span class='exponent'>x10<sup>33</sup></span> J</span><br>" +
+				"<span class='span_var_name' title='kinetic energy'>E<sub>k</sub>: </span><input type='text' id='"+objects[order_num].name+"_Ek' value='"+ showMonospaceValue(convertEnergy(objects[order_num].kinetic_energy)) +"' readonly><span class='span_unit_name'><span class='exponent'>x10<sup>33</sup></span> J</span><br>" +
+				"<span class='span_var_name' title='potential gravitational energy'>E<sub>p</sub>: </span><input type='text' id='"+objects[order_num].name+"_Ep' value='"+ showMonospaceValue(convertEnergy(objects[order_num].potential_energy)) +"' readonly><span class='span_unit_name'><span class='exponent'>x10<sup>33</sup></span> J</span>" +
+			"</div>"+
+			"<div class='info_column'>"+
+				"<span class='span_var_name' title='escape velocity'>v<sub>u</sub>: </span><input type='text' id='"+objects[order_num].name+"_vu' value='"+ showMonospaceValue( convertVelocity(objects[order_num].escape_speed) ) +"' readonly><span class='span_unit_name'> km/s</span><br>" +
+				"<span class='span_var_name' title='mass'>M: </span><input type='text' id='"+objects[order_num].name+"_M' value='"+ showMonospaceValue((convertMass(objects[order_num].mass)/1e+26).toFixed(9)) +"' readonly><span class='span_unit_name'> <span class='exponent'>x10<sup>26</sup></span> kg</span><br>" +
+				"<span class='span_var_name' title='orbit period'>T: </span><input type='text' value='"+ showMonospaceValue(objects[order_num].period/365.25) +"' readonly><span class='span_unit_name'> yr</span>" +
+			"</div>" +
+			"<span id ='more_info_button'><button type='button' onclick='showMoreInfo("+ order_num + ")'>Less info</button></span>"
+			;
+		} else {
+			document.getElementById(objects[order_num].name + "_more_info").innerHTML = "";
+		}
+	} else{
+		objects[order_num].show_more_info = 0;
+		document.getElementById(objects[order_num].name + "_more_info").innerHTML = '<span id="more_info_button"><button type="button" onclick="showMoreInfo('+ order_num +')">More info</button></span>';
+	}
+}
+
+// creates new object div
+var new_number;
+function createNewObjectDiv() {
+	new_number = num_of_objects + 1;
+	div = document.createElement('div');
+	document.getElementById("new_objects").appendChild(div);
+	div.innerHTML = "hello world";
+	div.className = "new_object_div";
+	div.id = "object" + new_number;
+	div.innerHTML = '<input type="text" placeholder="Name" id="name'+ new_number +'"> <br><hr>' +
+	'<div class="position">' +
+		'<span class="span_var_name">x: </span><input type="text" id="x'+new_number+'" ><span class="span_unit_name"> AU</span><br>' +
+		'<span class="span_var_name">y: </span><input type="text" id="y'+new_number+'" ><span class="span_unit_name"> AU</span><br>' +
+		'<span class="span_var_name">z: </span><input type="text" id="z'+new_number+'" ><span class="span_unit_name"> AU</span>' +
+	'</div>' +
+	'<div class="velocity">'+
+		'<span class="span_var_name">v<sub>x</sub>: </span><input type="text" id="vx'+new_number+'" ><span class="span_unit_name"> km/s </span><br>' +
+		'<span class="span_var_name">v<sub>y</sub>: </span><input type="text" id="vy'+new_number+'" ><span class="span_unit_name"> km/s </span><br>' +
+		'<span class="span_var_name">v<sub>z</sub>: </span><input type="text" id="vz'+new_number+'" ><span class="span_unit_name"> km/s </span><br>' +
+	'</div>' +
+	'<div class="acceleration">'+
+		'<span class="span_var_name">M: </span><input type="text" id="mass'+new_number+'" ><span class="span_unit_name"> M<sub>o</sub> </span><br>' +
+	'</div>' +
+	'<div class="confirm_creation_div"> <span> '+
+	'<button type="button" onclick="cancelNewObject('+new_number+');">Cancel</button>' +
+	'<button type="button" onclick="createNewObject('+new_number+');">Confirm</button>' +
+	'</span> </div>'
+		;
+}
+// creates new object
+var temp_new_object;
+function createNewObject(new_order_num) {
+	num_of_objects = num_of_objects + 1;
+	distances.push([]);
+
+	temp_new_object = new object(parseFloat(document.getElementById("x"+new_order_num).value),parseFloat(document.getElementById("y"+new_order_num).value),parseFloat(document.getElementById("z"+new_order_num).value),parseFloat(convertVelocityBack(document.getElementById("vx"+new_order_num).value)),parseFloat(convertVelocityBack(document.getElementById("vy"+new_order_num).value)),parseFloat(convertVelocityBack(document.getElementById("vz"+new_order_num).value)),parseFloat(document.getElementById("mass"+new_order_num).value) );
+	temp_new_object.name = document.getElementById("name"+new_order_num).value;
+	temp_new_object.czech_name = temp_new_object.name;
+	//temp_new_object.real_radius = parseFloat(document.getElementById("real_radius"+new_order_num).value);
+
+	temp_new_object.radius = Math.ceil(0.5 * Earth.radius);
+	temp_new_object.color = 'rgba(0,0,0,1)';
+
+	objects.push(temp_new_object);
+	// deletes creation Div
+	var parent = document.getElementById("new_objects");
+	var child = document.getElementById("object"+new_order_num);
+	parent.removeChild(child);
+}
+// cancel creation of a new object
+function cancelNewObject(new_order_num) {
+	// deletes creation Div
+	var parent = document.getElementById("new_objects");
+	var child = document.getElementById("object"+new_order_num);
+	parent.removeChild(child);
+
+}
+
+//function to tick apply force
+function tickApplyForce(order_num) {
+	if(objects[order_num].apply_force == 1) {
+		objects[order_num].apply_force = 0;
+	} else {
+		objects[order_num].apply_force = 1;
+	}
+	updatePlanetDiv(order_num);
+}
+
+// applies force
+function confirmAF(order_num) {
+	// if the first radio button for the given planet is selected - value is 1
+	if(document.getElementById("r1_"+order_num).checked || document.getElementById("r2_"+order_num).checked || document.getElementById("r3_"+order_num).checked) {
+		if(document.getElementById("r1_"+order_num).checked) {
+			objects[order_num].ap_radio = 1;
+		} else if(document.getElementById("r2_"+order_num).checked) {
+			objects[order_num].ap_radio = 2;
+		} else if(document.getElementById("r3_"+order_num).checked) {
+			objects[order_num].ap_radio = 3;
+		}
+		objects[order_num].alpha = parseFloat( document.getElementById("r1_alpha"+order_num).value ) * Math.PI / 180;
+		objects[order_num].beta = parseFloat( document.getElementById("r1_beta"+order_num).value ) * Math.PI / 180 ;
+		objects[order_num].force = convertForceBack(parseFloat( document.getElementById("r1_force"+order_num).value) * 1e+21); // CONVERT!!
+		objects[order_num].fuel_mass = convertMassBack( parseFloat( document.getElementById("r1_fuel_mass"+order_num).value )*1e+26);
+		objects[order_num].fuel_con = convertFuelConBack( parseFloat(document.getElementById("r1_fuel_con"+order_num).value)*1e+26);
+
+		// zkouska
+		console.log(objects[order_num].ap_radio);
+		console.log(objects[order_num].alpha);
+		console.log(objects[order_num].beta);
+		console.log(objects[order_num].force);
+		console.log(objects[order_num].fuel_mass);
+		console.log(objects[order_num].fuel_con);
+	} else {
+		cancelAF(order_num);
+	}
+
+}
+// cancels applying force
+function cancelAF(order_num) {
+	// deletes creation Div
+    document.getElementById("apply_force_div"+order_num).innerHTML = "";
+    document.getElementById("tick_apply_force"+order_num).checked = 0;
+    objects[order_num].apply_force = 0;
+    objects[order_num].alpha = 0;
+    objects[order_num].beta = 0;
+    objects[order_num].force = 0;
+    objects[order_num].fuel_mass = 0;
+    objects[order_num].fuel_con = 0;
+    updatePlanetDiv(order_num);
+}
+
+//changes epsilon
+var temp_epsilon
+function changeEpsilon(){
+	temp_epsilon = parseFloat(document.getElementById("epsilon_input").value);
+	if(!isNaN(temp_epsilon)) {
+		epsilon = temp_epsilon;
+	}
+}
+
+function hello() {
+	console.log("hello world!");
+}
+
+</script>
+
+<div style='text-align: right;position: fixed;z-index:9999999;bottom: 0; width: 100%;cursor: pointer;line-height: 0;display:block !important;'><a title="Hosted on free web hosting 000webhost.com. Host your own website for FREE." target="_blank" href="https://www.000webhost.com/?utm_source=000webhostapp&amp;utm_campaign=000_logo&amp;utm_medium=website&amp;utm_content=footer_img"><img src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"  alt="www.000webhost.com"></a></div></body>
+</html>

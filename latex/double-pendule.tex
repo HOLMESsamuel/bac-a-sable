@@ -1,0 +1,94 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage{textcomp}
+\usepackage{setspace}
+\usepackage{multicol}
+\usepackage{tikz}
+\date{}
+\usepackage[top=2cm, bottom=2cm, left=3cm, right=3cm]{geometry}
+\title{Double pendule}
+\begin{document}
+\maketitle
+
+
+\section{Description du système :}
+Le système est constitué d'une masse $m_{1}$ accrochée à l'origine par un fil de masse nulle, indéformable et de longueur $l_{1}$. A cette masse est accroché un pendule similaire composé d'une masse $m_{2}$ et d'un fil de longueur $l_{2}$.\\
+Les angles formés par les fils $l_{1}$ et $l_{2}$ avec la verticale sont respectivement appelés $\theta_{1}$ et $\theta_{2}$.\\
+A tout instant t la masse $m_{1}$ sera repérée par le couple de coordonnées ($x_{1}$, $y_{1}$) et possèdera la vitesse $v_{1}$. De même la masse $m_{2}$ est repérée par le couple ($x_{2}$, $y_{2}$) et possède la vitesse $v_{2}$.\\
+Il s'agit ici de mettre en équation le mouvement du double pendule en vue d'une simulation en javascript du système.\\
+\begin{center}
+\begin{tikzpicture}
+%dessin lignes%
+\draw (0,0) to (1,-1) node [black, above=5] {$l_{1}$} to (2,-2);
+\draw (2,-2) to (4.5,-2.5) node[black, above=12, left=12] {$l_{2}$};
+
+%dessin des masses%
+\draw [black,fill] (2,-2) circle [radius=0.2] node [black,above=6, right=6] {$m_{1}$};
+\draw [black,fill] (4.5,-2.5) circle [radius=0.2] node [black, below=4] {$m_{2}$};
+
+%dessin des traits verticaux en pointillé%
+\draw [dashed] (0,1) to  (0,-3);
+\draw [dashed] (2,-1) to (2,-4);
+
+%dessin des angles%
+\draw (0,-1) arc(270:315:1);
+\draw (2,-2.85) arc(270:340:1);
+\node[] at (294:1.4)  {$\theta_{1}$};
+\node[right=55, below=44] at (305:1.4) {$\theta_{2}$};
+
+%dessin de la croix à l'origine%
+\draw [thick] (-0.2,0) to (0.2,0);
+\draw [thick] (0,0.2) to (0,-0.2);
+
+%dessin des axes x et y%
+\draw [->] (0,0) to (0,1) node [above=2] {y};
+\draw [->] (0,0) to (1,0) node [right=2] {x};
+
+%dessin du vecteur g%
+\draw [->] (6,0) to (6,-1) node [black, above=6, right=4] {$\vec{g}$};
+
+\end{tikzpicture}
+\end{center}
+
+\section{Mise en équation :}
+\begin{large}
+\noindent $x_{1}=l_{1}\sin(\theta_{1})$ \qquad $x_{2}=l_{1}\sin(\theta_{1})+l_{2}\sin(\theta_{2})$\\
+$y_{1}=-l_{1}\cos(\theta_{1})$ \quad  $y_{2}=-l_{1}\cos(\theta_{1})-l_{2}\cos(\theta_{2})$\\
+\\
+\end{large}
+Il suffit maintenant de déterminer les expressions des angles $\theta_{1}$ et $\theta_{2}$. Pour cela on utilise le Lagrangien $L=E_{c}-E_{p}$ où $E_{c}$ et $E_{p}$ sont respectivement les énergies cinétiques et potentielles du système.\\
+\\
+\begin{large}
+$E_{c}=\frac{1}{2}m_{1}v_{1}^{2}+\frac{1}{2}m_{2}v_{2}^{2}$\\
+$E_{c}=\frac{1}{2}m_{1}(\dot{x_{1}}^{2}+\dot{y_{1}}^{2})+\frac{1}{2}m_{2}(\dot{x_{2}}^{2}+\dot{y_{2}}^{2})$\\
+\\
+$\dot{x_{1}}=l_{1}\dot{\theta_{1}}\cos(\theta_{1})$ \qquad $\dot{x_{2}}=l_{1}\dot{\theta_{1}}\cos(\theta_{1})+l_{2}\dot{\theta_{2}}\cos(\theta_{2})$\\
+$\dot{y_{1}}=l_{1}\dot{\theta_{1}}\sin(\theta{1})$ \qquad $\dot{y_{2}}=l_{1}\dot{\theta_{1}}\sin(\theta{1})+l_{2}\dot{\theta_{2}}\sin(\theta{2})$\\
+\\
+$\dot{x_{1}}^{2}+\dot{y_{1}}^{2}=l_{1}^2\theta_{1}^{2}$ \qquad $\dot{x_{2}}^{2}+\dot{y_{2}}^{2}=l_1^2\dot{\theta_1}^2+l_2^2\dot{\theta_2}^2+2l_1l_2\dot{\theta_1}\dot{\theta_2}\cos(\theta_1-\theta_2)$\\
+\\
+$E_{c} = \frac{1}{2}m_1l_1^2\dot{\theta_1}^2+\frac{1}{2}m_2\left(l_1^2\dot{\theta_1}^2+l_2^2\dot{\theta_2}^2+2l_1l_2\dot{\theta_1}\dot{\theta_2}\cos(\theta_1-\theta_2)\right)$\\
+\\
+$E_{p}=m_{1}gy_{1}+m_{2}gy{2}=-(m_{1}+m_{2})gl_{1}\cos(\theta_{1})-m_{2}gl_{2}\cos(\theta_{2})$\\
+\\
+\end{large}
+Les equations de Lagrange pour $\theta_{1}$ et $\theta_{2}$ sont : \\
+\\
+\begin{Large}
+$\frac{d}{dt}(\frac{\partial L}{\partial \dot{\theta_{i}}})-\frac{\partial L}{\partial \theta_{i}}=0$
+\end{Large}
+\\
+\\
+Les calculs suivants sont longs mais simples, aussi si l'on passe les détails voici ce qu'on obtient en posant $\mu=1+\frac{m_{1}}{m_{2}}$ :
+\\
+\\
+\begin{Large}
+$\ddot{\theta_1} =\frac{g\left(\sin \theta_2 \cos (\theta_1-\theta_2)- \mu\sin \theta_1\right)-\left(l_2\dot{\theta_2}^2+l_1\dot{\theta_1}^2\cos (\theta_1-\theta_2)\right)\sin (\theta_1-\theta_2)}{l_1\left(\mu-\cos^2 (\theta_1-\theta_2)\right)}$\\
+\\
+$\ddot{\theta_2} = \frac{g\mu(\sin \theta_1\cos (\theta_1 - \theta_2) - \sin \theta_2)+\left(\mu l_1\dot{\theta_1}^2+l_2\dot{\theta_2}^2\cos(\theta_1-\theta_2)\right)\sin(\theta_1-\theta_2)}{l_2\left(\mu-\cos^2 (\theta_1-\theta_2)\right)}$\\
+\\
+\end{Large}
+Pour réaliser une simulation informatique du système il suffit maintenant, grâce à la méthode d'Euler, de définir des conditions initiales ainsi qu'un intervalle de temps dt. On obtient $\ddot{\theta_{1}}$ et $\ddot{\theta_{2}}$ grâce aux formules précédentes puis $\dot{\theta_{1}}$ et $\dot{\theta_{2}}$ par multiplication par dt. On obtient de même $\theta_{1}$ et $\theta_{2}$ et donc les coordonnées des deux masses.
+
+\end{document}
